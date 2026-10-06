@@ -1,0 +1,4245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Trekora Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='admin.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+     ===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-mark">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.8">
+
+                <path d="M3 19L9.5 7L13 13L16 8L21 19"/>
+                <path d="M8 19L12 12L15 16L17 13L21 19"/>
+
+            </svg>
+
+        </div>
+
+        <div class="brand-text">
+
+            <h2>Trekora</h2>
+
+            <span>ADMIN PANEL</span>
+
+        </div>
+
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+        <p class="nav-label">
+            MAIN MENU
+        </p>
+
+
+        <a href="/admin"
+           class="nav-item active">
+
+            <span class="nav-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <rect x="3" y="3"
+                          width="7" height="7"
+                          rx="1"/>
+
+                    <rect x="14" y="3"
+                          width="7" height="7"
+                          rx="1"/>
+
+                    <rect x="3" y="14"
+                          width="7" height="7"
+                          rx="1"/>
+
+                    <rect x="14" y="14"
+                          width="7" height="7"
+                          rx="1"/>
+
+                </svg>
+
+            </span>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <a href="#bookings"
+           class="nav-item">
+
+            <span class="nav-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <path d="M6 3h12"/>
+                    <path d="M6 21h12"/>
+
+                    <rect x="4" y="5"
+                          width="16" height="14"
+                          rx="2"/>
+
+                    <path d="M8 9h8"/>
+                    <path d="M8 13h5"/>
+
+                </svg>
+
+            </span>
+
+            <span>Bookings</span>
+
+        </a>
+
+
+        <a href="#treks"
+           class="nav-item">
+
+            <span class="nav-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <path d="M3 20L10 7L14 14L17 9L21 20"/>
+                    <path d="M3 20h18"/>
+
+                </svg>
+
+            </span>
+
+            <span>Treks</span>
+
+        </a>
+
+
+        <a href="#mentors"
+           class="nav-item">
+
+            <span class="nav-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <circle cx="9" cy="8" r="3"/>
+
+                    <path d="M3 20c0-3.3 2.7-6 6-6"/>
+
+                    <circle cx="17"
+                            cy="10"
+                            r="2.5"/>
+
+                    <path d="M13 20c.4-2.5 2-4.2 4-4.2
+                             2.2 0 3.7 1.6 4 4.2"/>
+
+                </svg>
+
+            </span>
+
+            <span>Mentors</span>
+
+        </a>
+
+
+        <a href="#users"
+           class="nav-item">
+
+            <span class="nav-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <circle cx="12"
+                            cy="8"
+                            r="3.5"/>
+
+                    <path d="M5 21c0-3.8 3.1-6.5 7-6.5
+                             s7 2.7 7 6.5"/>
+
+                </svg>
+
+            </span>
+
+            <span>Users</span>
+
+        </a>
+
+
+        <a href="#payments"
+           class="nav-item">
+
+            <span class="nav-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <rect x="3"
+                          y="5"
+                          width="18"
+                          height="14"
+                          rx="2"/>
+
+                    <path d="M3 10h18"/>
+                    <path d="M7 15h4"/>
+
+                </svg>
+
+            </span>
+
+            <span>Payments</span>
+
+        </a>
+
+
+        <p class="nav-label second-label">
+            SYSTEM
+        </p>
+
+
+        <a href="#settings"
+           class="nav-item">
+
+            <span class="nav-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <circle cx="12"
+                            cy="12"
+                            r="3"/>
+
+                    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9
+                             l.1.1-1.8 1.8-.1-.1
+                             a1.7 1.7 0 0 0-1.9-.3
+                             1.7 1.7 0 0 0-1 1.6V20
+                             h-2.6v-.1a1.7 1.7 0 0 0-1-1.6
+                             1.7 1.7 0 0 0-1.9.3l-.1.1
+                             -1.8-1.8.1-.1A1.7 1.7 0 0 0
+                             8 15a1.7 1.7 0 0 0-1.6-1H6
+                             v-2.6h.1A1.7 1.7 0 0 0
+                             7.7 10a1.7 1.7 0 0 0-.3-1.9
+                             l-.1-.1 1.8-1.8.1.1
+                             a1.7 1.7 0 0 0 1.9.3
+                             1.7 1.7 0 0 0 1-1.6V5
+                             h2.6v.1a1.7 1.7 0 0 0
+                             1 1.6 1.7 1.7 0 0 0 1.9-.3
+                             l.1-.1 1.8 1.8-.1.1
+                             a1.7 1.7 0 0 0-.3 1.9
+                             1.7 1.7 0 0 0 1.6 1h.1V14h-.1
+                             a1.7 1.7 0 0 0-1.4 1z"/>
+
+                </svg>
+
+            </span>
+
+            <span>Settings</span>
+
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="/"
+           class="website-link">
+
+            <span class="small-link-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+
+                    <path d="M14 5h5v5"/>
+                    <path d="M19 5l-8 8"/>
+
+                    <path d="M19 13v5a1 1 0 0 1-1 1H6
+                             a1 1 0 0 1-1-1V6
+                             a1 1 0 0 1 1-1h5"/>
+
+                </svg>
+
+            </span>
+
+            Visit Website
+
+        </a>
+
+
+        <a href="/admin/logout"
+           class="logout-button"
+           onclick="return confirm('Are you sure you want to logout?');">
+
+            <span class="logout-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+
+                    <path d="M10 17l5-5-5-5"/>
+                    <path d="M15 12H3"/>
+                    <path d="M20 5v14"/>
+
+                </svg>
+
+            </span>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+     ===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- MOBILE HEADER -->
+
+    <header class="mobile-header">
+
+        <button class="mobile-menu"
+                onclick="toggleSidebar()">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2">
+
+                <path d="M4 6h16"/>
+                <path d="M4 12h16"/>
+                <path d="M4 18h16"/>
+
+            </svg>
+
+        </button>
+
+        <strong>Trekora</strong>
+
+    </header>
+
+
+
+  <div class="topbar-right">
+
+    <!-- NOTIFICATION BUTTON -->
+    <div class="notification-wrapper">
+
+        <button
+            class="notification"
+            id="notificationButton"
+            type="button"
+            onclick="toggleNotifications()"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+            >
+
+                <path
+                    d="M18 8a6 6 0 0 0-12 0
+                       c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                />
+
+                <path d="M10 21h4" />
+
+            </svg>
+
+            <span
+                id="notificationBadge"
+                class="notification-badge"
+                style="display: none;"
+            >
+                0
+            </span>
+
+        </button>
+
+
+        <!-- NOTIFICATION PANEL -->
+        <div
+            class="notification-panel"
+            id="notificationPanel"
+        >
+
+            <div class="notification-panel-header">
+
+                <div>
+                    <strong>Notifications</strong>
+
+                    <span>
+                        Latest updates from Trekora
+                    </span>
+                </div>
+
+                <button
+                    type="button"
+                    onclick="markAllNotificationsRead()"
+                >
+                    Mark all read
+                </button>
+
+            </div>
+
+
+            <div
+                class="notification-list"
+                id="notificationList"
+            >
+
+                <div class="notification-loading">
+                    Loading notifications...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN PROFILE -->
+    <div class="profile">
+
+        <div class="profile-avatar">
+            A
+        </div>
+
+        <div class="profile-info">
+
+            <strong>Admin</strong>
+
+            <small>
+                Administrator
+            </small>
+
+        </div>
+
+        <svg
+            class="profile-arrow"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+        >
+
+            <path d="M6 9l6 6 6-6" />
+
+        </svg>
+
+    </div>
+
+</div>
+
+    <!-- =====================================================
+         STATISTICS
+         ===================================================== -->
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card green">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+
+                        <rect x="4"
+                              y="5"
+                              width="16"
+                              height="15"
+                              rx="2"/>
+
+                        <path d="M8 3v4"/>
+                        <path d="M16 3v4"/>
+                        <path d="M4 10h16"/>
+
+                    </svg>
+
+                </div>
+
+                <span class="stat-label">
+                    TOTAL BOOKINGS
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ total_bookings }}
+            </div>
+
+            <div class="stat-footer">
+                All bookings
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card blue">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+
+                        <circle cx="9"
+                                cy="8"
+                                r="3"/>
+
+                        <path d="M3 20c0-3.5 2.7-6 6-6"/>
+
+                        <circle cx="17"
+                                cy="10"
+                                r="2.5"/>
+
+                        <path d="M13 20c.3-2.6 1.8-4.5 4-4.5
+                                 2.2 0 3.7 1.8 4 4.5"/>
+
+                    </svg>
+
+                </div>
+
+                <span class="stat-label">
+                    TOTAL TREKKERS
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ total_people }}
+            </div>
+
+            <div class="stat-footer">
+                People registered
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card gold">
+
+            <div class="stat-top">
+
+                <div class="stat-icon currency">
+                    ₹
+                </div>
+
+                <span class="stat-label">
+                    TOTAL REVENUE
+                </span>
+
+            </div>
+
+            <div class="stat-number revenue">
+                ₹{{ "{:,.0f}".format(total_revenue or 0) }}
+            </div>
+
+            <div class="stat-footer">
+                From active bookings
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card orange">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+
+                        <circle cx="12"
+                                cy="12"
+                                r="8"/>
+
+                        <path d="M12 8v5"/>
+                        <path d="M12 16h.01"/>
+
+                    </svg>
+
+                </div>
+
+                <span class="stat-label">
+                    PENDING
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ pending_bookings }}
+            </div>
+
+            <div class="stat-footer">
+                Awaiting action
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card teal">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+
+                        <circle cx="12"
+                                cy="12"
+                                r="8"/>
+
+                        <path d="M8 12l2.5 2.5L16 9"/>
+
+                    </svg>
+
+                </div>
+
+                <span class="stat-label">
+                    CONFIRMED
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ confirmed_bookings }}
+            </div>
+
+            <div class="stat-footer">
+                Successfully confirmed
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card red">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+
+                        <circle cx="12"
+                                cy="12"
+                                r="8"/>
+
+                        <path d="M9 9l6 6"/>
+                        <path d="M15 9l-6 6"/>
+
+                    </svg>
+
+                </div>
+
+                <span class="stat-label">
+                    CANCELLED
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ cancelled_bookings }}
+            </div>
+
+            <div class="stat-footer">
+                Cancelled bookings
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         BOOKINGS
+         ===================================================== -->
+
+    <section class="dashboard-card"
+             id="bookings">
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>Recent Bookings</h2>
+
+                <p>
+                    Manage and monitor all trek reservations.
+                </p>
+
+            </div>
+
+
+            <div class="booking-tools">
+
+                <div class="filter-tabs">
+
+                    <button class="filter-btn active"
+                            onclick="filterBookings('all', this)">
+                        All
+                    </button>
+
+                    <button class="filter-btn"
+                            onclick="filterBookings('Pending', this)">
+                        Pending
+                    </button>
+
+                    <button class="filter-btn"
+                            onclick="filterBookings('Confirmed', this)">
+                        Confirmed
+                    </button>
+
+                    <button class="filter-btn"
+                            onclick="filterBookings('Cancelled', this)">
+                        Cancelled
+                    </button>
+
+                </div>
+
+
+                <div class="search">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2">
+
+                        <circle cx="11"
+                                cy="11"
+                                r="7"/>
+
+                        <path d="M20 20l-4-4"/>
+
+                    </svg>
+
+                    <input
+                        type="text"
+                        id="bookingSearch"
+                        placeholder="Search bookings..."
+                        onkeyup="searchBookings()">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table id="bookingTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Booking ID</th>
+                        <th>Trek</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>People</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                {% if bookings %}
+
+                    {% for booking in bookings %}
+
+                    <tr>
+
+                        <td>
+
+                            <span class="booking-id">
+                                {{ booking.booking_id }}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <div class="trek-cell">
+
+                                <div class="trek-icon">
+
+                                    <svg viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="1.8">
+
+                                        <path d="M3 20L10 7L14 14L17 9L21 20"/>
+                                        <path d="M3 20h18"/>
+
+                                    </svg>
+
+                                </div>
+
+                                <strong>
+                                    {{ booking.trek_name }}
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            <div class="customer-cell">
+
+                                <div class="customer-avatar">
+                                    {{ booking.name[0]|upper }}
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        {{ booking.name }}
+                                    </strong>
+
+                                    <small>
+                                        {{ booking.email }}
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="date-value">
+                                {{ booking.trek_date }}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="people-badge">
+                                {{ booking.people }}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong class="amount">
+                                ₹{{ "{:,.0f}".format(booking.total_amount or 0) }}
+                            </strong>
+
+                        </td>
+
+
+                        <td>
+
+                            {% if booking.status == "Pending" %}
+
+                            <span class="status pending">
+                                <i></i>
+                                Pending
+                            </span>
+
+                            {% elif booking.status == "Confirmed" %}
+
+                            <span class="status confirmed">
+                                <i></i>
+                                Confirmed
+                            </span>
+
+                            {% elif booking.status == "Cancelled" %}
+
+                            <span class="status cancelled">
+                                <i></i>
+                                Cancelled
+                            </span>
+
+                            {% else %}
+
+                            <span class="status">
+                                {{ booking.status }}
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            <a
+                                href="{{ url_for(
+                                    'admin_booking_details',
+                                    booking_id=booking.booking_id
+                                ) }}"
+                                class="view-button">
+
+                                View
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2">
+
+                                    <path d="M5 12h14"/>
+                                    <path d="M13 6l6 6-6 6"/>
+
+                                </svg>
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+
+                        <td colspan="8">
+
+                            <div class="empty-state">
+
+                                <div class="empty-icon">
+
+                                    <svg viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="1.7">
+
+                                        <rect x="4"
+                                              y="4"
+                                              width="16"
+                                              height="16"
+                                              rx="2"/>
+
+                                        <path d="M8 9h8"/>
+                                        <path d="M8 13h6"/>
+                                        <path d="M8 17h4"/>
+
+                                    </svg>
+
+                                </div>
+
+                                <h3>
+                                    No bookings yet
+                                </h3>
+
+                                <p>
+                                    New trek bookings will appear here.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         LOWER DASHBOARD
+         ===================================================== -->
+
+    <section class="lower-grid">
+
+
+        <!-- BOOKING OVERVIEW -->
+
+        <div class="dashboard-card">
+
+            <div class="card-title">
+
+                <div>
+
+                    <h2>Booking Overview</h2>
+
+                    <p>
+                        Current booking status
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-list">
+
+                <div class="overview-item">
+
+                    <div class="overview-left">
+
+                        <span class="overview-icon pending-bg">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8">
+
+                                <circle cx="12"
+                                        cy="12"
+                                        r="8"/>
+
+                                <path d="M12 8v5"/>
+
+                            </svg>
+
+                        </span>
+
+                        <span>Pending</span>
+
+                    </div>
+
+                    <strong>
+                        {{ pending_bookings }}
+                    </strong>
+
+                </div>
+
+
+                <div class="overview-item">
+
+                    <div class="overview-left">
+
+                        <span class="overview-icon confirmed-bg">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8">
+
+                                <circle cx="12"
+                                        cy="12"
+                                        r="8"/>
+
+                                <path d="M8 12l2.5 2.5L16 9"/>
+
+                            </svg>
+
+                        </span>
+
+                        <span>Confirmed</span>
+
+                    </div>
+
+                    <strong>
+                        {{ confirmed_bookings }}
+                    </strong>
+
+                </div>
+
+
+                <div class="overview-item">
+
+                    <div class="overview-left">
+
+                        <span class="overview-icon cancelled-bg">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8">
+
+                                <circle cx="12"
+                                        cy="12"
+                                        r="8"/>
+
+                                <path d="M9 9l6 6"/>
+                                <path d="M15 9l-6 6"/>
+
+                            </svg>
+
+                        </span>
+
+                        <span>Cancelled</span>
+
+                    </div>
+
+                    <strong>
+                        {{ cancelled_bookings }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="dashboard-card">
+
+            <div class="card-title">
+
+                <div>
+
+                    <h2>Quick Actions</h2>
+
+                    <p>
+                        Manage Trekora
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+
+                <a href="#bookings"
+                   class="quick-action">
+
+                    <span>
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8">
+
+                            <rect x="4"
+                                  y="5"
+                                  width="16"
+                                  height="15"
+                                  rx="2"/>
+
+                            <path d="M8 3v4"/>
+                            <path d="M16 3v4"/>
+                            <path d="M4 10h16"/>
+
+                        </svg>
+
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Manage Bookings
+                        </strong>
+
+                        <small>
+                            View all trek reservations
+                        </small>
+
+                    </div>
+
+                    <b>›</b>
+
+                </a>
+
+
+                <a href="#treks"
+                   class="quick-action">
+
+                    <span>
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8">
+
+                            <path d="M3 20L10 7L14 14L17 9L21 20"/>
+                            <path d="M3 20h18"/>
+
+                        </svg>
+
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Manage Treks
+                        </strong>
+
+                        <small>
+                            View trek destinations
+                        </small>
+
+                    </div>
+
+                    <b>›</b>
+
+                </a>
+
+
+                <a href="#mentors"
+                   class="quick-action">
+
+                    <span>
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8">
+
+                            <circle cx="9"
+                                    cy="8"
+                                    r="3"/>
+
+                            <path d="M3 20c0-3.5 2.7-6 6-6"/>
+
+                            <circle cx="17"
+                                    cy="10"
+                                    r="2.5"/>
+
+                        </svg>
+
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Manage Mentors
+                        </strong>
+
+                        <small>
+                            View trek mentors
+                        </small>
+
+                    </div>
+
+                    <b>›</b>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TREKS MANAGEMENT
+         ===================================================== -->
+
+    <section id="treks"
+             class="treks-management-section">
+
+
+        <div class="treks-header">
+
+            <div class="treks-heading">
+
+                <div class="section-badge">
+                    TREK MANAGEMENT
+                </div>
+
+                <h2>
+                    Manage Treks
+                </h2>
+
+                <p>
+                    View and manage all Trekora trekking destinations.
+                </p>
+
+            </div>
+
+
+            <div class="treks-header-actions">
+
+                <div class="trek-count">
+
+                    <strong>
+                        {{ treks|length }}
+                    </strong>
+
+                    <span>
+                        Total Treks
+                    </span>
+
+                </div>
+
+
+                <button type="button"
+                        class="add-trek-btn">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2">
+
+                        <path d="M12 5v14"/>
+                        <path d="M5 12h14"/>
+
+                    </svg>
+
+                    Add New Trek
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SEARCH + FILTER -->
+
+        <div class="trek-tools">
+
+
+            <div class="trek-search">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+
+                    <circle cx="11"
+                            cy="11"
+                            r="7"/>
+
+                    <path d="M20 20l-4-4"/>
+
+                </svg>
+
+                <input
+                    type="text"
+                    id="trekSearch"
+                    placeholder="Search trek, location or mentor...">
+
+            </div>
+
+
+            <div class="difficulty-filters">
+
+                <button type="button"
+                        class="trek-filter-btn active"
+                        data-difficulty="all">
+
+                    All
+
+                </button>
+
+                <button type="button"
+                        class="trek-filter-btn"
+                        data-difficulty="Easy">
+
+                    Easy
+
+                </button>
+
+                <button type="button"
+                        class="trek-filter-btn"
+                        data-difficulty="Moderate">
+
+                    Moderate
+
+                </button>
+
+                <button type="button"
+                        class="trek-filter-btn"
+                        data-difficulty="Difficult">
+
+                    Difficult
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TREK STATISTICS -->
+
+        <div class="trek-statistics">
+
+
+            <div class="trek-stat-card">
+
+                <div class="trek-stat-number">
+                    {{ treks|length }}
+                </div>
+
+                <div class="trek-stat-label">
+                    Total Treks
+                </div>
+
+            </div>
+
+
+            <div class="trek-stat-card">
+
+                <div class="trek-stat-number">
+
+                    {{ treks
+                       |selectattr("difficulty", "equalto", "Easy")
+                       |list
+                       |length }}
+
+                </div>
+
+                <div class="trek-stat-label">
+                    Easy Treks
+                </div>
+
+            </div>
+
+
+            <div class="trek-stat-card">
+
+                <div class="trek-stat-number">
+
+                    {{ treks
+                       |selectattr("difficulty", "equalto", "Moderate")
+                       |list
+                       |length }}
+
+                </div>
+
+                <div class="trek-stat-label">
+                    Moderate Treks
+                </div>
+
+            </div>
+
+
+            <div class="trek-stat-card">
+
+                <div class="trek-stat-number">
+
+                    {{ treks
+                       |selectattr("difficulty", "equalto", "Difficult")
+                       |list
+                       |length }}
+
+                </div>
+
+                <div class="trek-stat-label">
+                    Difficult Treks
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TREK TABLE -->
+
+        <div class="treks-table-card">
+
+            <div class="treks-table-wrapper">
+
+                <table class="treks-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Trek</th>
+                            <th>Location</th>
+                            <th>Difficulty</th>
+                            <th>Duration</th>
+                            <th>Distance</th>
+                            <th>Price</th>
+                            <th>Rating</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    {% if treks %}
+
+                        {% for trek in treks %}
+
+                        <tr>
+
+                            <td>
+
+                                <div class="admin-trek-info">
+
+                                    <img
+                                        src="{{ url_for(
+                                            'static',
+                                            filename='images/' + trek.image
+                                        ) }}"
+                                        alt="{{ trek.name }}"
+                                        class="admin-trek-image">
+
+                                    <div>
+
+                                        <strong>
+                                            {{ trek.name }}
+                                        </strong>
+
+                                        <small>
+                                            {{ trek.mentor }}
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="trek-location">
+                                    {{ trek.location }}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                {% if trek.difficulty == "Easy" %}
+
+                                    <span class="difficulty easy">
+                                        Easy
+                                    </span>
+
+                                {% elif trek.difficulty == "Moderate" %}
+
+                                    <span class="difficulty moderate">
+                                        Moderate
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="difficulty difficult">
+                                        Difficult
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="trek-detail">
+                                    {{ trek.duration }}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="trek-detail">
+                                    {{ trek.distance }}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <strong class="trek-price">
+                                    ₹{{ trek.price }}
+                                </strong>
+
+                                <small class="price-label">
+                                    / person
+                                </small>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="trek-rating">
+
+                                    <span class="star">
+                                        ★
+                                    </span>
+
+                                    {{ trek.rating }}
+
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="trek-actions">
+
+
+                                    <a
+                                        href="/admin/edit-trek/{{ trek.name|urlencode }}"
+                                        class="trek-edit-button">
+
+                                        <svg viewBox="0 0 24 24"
+                                             fill="none"
+                                             stroke="currentColor"
+                                             stroke-width="2">
+
+                                            <path d="M12 20h9"/>
+
+                                            <path d="M16.5 3.5
+                                                     a2.121 2.121 0 0 1 3 3
+                                                     L8 18l-4 1 1-4Z"/>
+
+                                        </svg>
+
+                                        Edit
+
+                                    </a>
+
+
+                                    <form
+                                        action="{{ url_for(
+                                            'delete_trek_route',
+                                            trek_name=trek.name
+                                        ) }}"
+                                        method="POST"
+                                        onsubmit="return confirm(
+                                            'Are you sure you want to delete {{ trek.name }}?'
+                                        );">
+
+                                        <button
+                                            type="submit"
+                                            class="delete-trek-btn"
+                                            title="Delete Trek">
+
+                                            <svg viewBox="0 0 24 24"
+                                                 fill="none"
+                                                 stroke="currentColor"
+                                                 stroke-width="2">
+
+                                                <polyline points="3 6 5 6 21 6"></polyline>
+
+                                                <path d="M19 6l-1 14H6L5 6"></path>
+
+                                                <path d="M10 11v6"></path>
+
+                                                <path d="M14 11v6"></path>
+
+                                                <path d="M9 6V4h6v2"></path>
+
+                                            </svg>
+
+                                            Delete
+
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td colspan="8">
+
+                                <div class="trek-empty-state">
+
+                                    <div class="trek-empty-icon">
+
+                                        <svg viewBox="0 0 24 24"
+                                             fill="none"
+                                             stroke="currentColor"
+                                             stroke-width="2">
+
+                                            <path d="M3 20L10 7L14 14L17 9L21 20"/>
+                                            <path d="M3 20h18"/>
+
+                                        </svg>
+
+                                    </div>
+
+                                    <h3>
+                                        No treks available
+                                    </h3>
+
+                                    <p>
+                                        Add a new trek to see it here.
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+     MENTORS MANAGEMENT
+     ===================================================== -->
+
+<section id="mentors"
+         class="mentors-management-section">
+
+    <div class="mentors-section-header">
+
+        <div>
+
+            <span class="section-label">
+                MENTOR MANAGEMENT
+            </span>
+
+            <h2>
+                Trek Mentors
+            </h2>
+
+            <p>
+                View and manage Trekora trekking mentors.
+            </p>
+
+        </div>
+
+
+        <!-- HEADER ACTIONS -->
+
+        <div class="mentors-header-actions">
+
+            <!-- TOTAL MENTORS -->
+
+            <div class="mentors-total-card">
+
+                <span class="mentors-total-number">
+                    {{ mentors|length }}
+                </span>
+
+                <span class="mentors-total-label">
+                    Total Mentors
+                </span>
+
+            </div>
+
+
+            <!-- ADD MENTOR -->
+
+            <a
+                href="{{ url_for('add_mentor') }}"
+                class="add-mentor-button">
+
+                <span>
+                    +
+                </span>
+
+                Add Mentor
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- MENTOR SEARCH -->
+
+    <div class="mentors-toolbar">
+
+        <div class="mentors-search-box">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+
+                <circle
+                    cx="11"
+                    cy="11"
+                    r="7">
+                </circle>
+
+                <path d="M20 20l-4-4">
+                </path>
+
+            </svg>
+
+
+            <input
+                type="text"
+                id="mentorSearch"
+                placeholder="Search by mentor, specialization or email..."
+                onkeyup="searchMentors()">
+
+        </div>
+
+    </div>
+
+
+    <!-- MENTORS TABLE -->
+
+    <div class="mentors-table-card">
+
+        <div class="mentors-table-wrapper">
+
+            <table
+                class="mentors-table"
+                id="mentorsTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            MENTOR
+                        </th>
+
+                        <th>
+                            CONTACT
+                        </th>
+
+                        <th>
+                            EXPERIENCE
+                        </th>
+
+                        <th>
+                            SPECIALIZATION
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                {% if mentors %}
+
+                    {% for mentor in mentors %}
+
+                    <tr>
+
+                        <!-- MENTOR -->
+
+                        <td>
+
+                            <div class="mentor-info-cell">
+
+                                <div class="mentor-avatar">
+
+                                    {{ mentor.name[0]|upper }}
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        {{ mentor.name }}
+                                    </strong>
+
+                                    <span>
+                                        Trek Mentor
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- CONTACT -->
+
+                        <td>
+
+                            <div class="mentor-contact-cell">
+
+                                <span>
+                                    {{ mentor.email or "No email" }}
+                                </span>
+
+                                <span>
+                                    {{ mentor.phone or "No phone" }}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- EXPERIENCE -->
+
+                        <td>
+
+                            <strong class="mentor-experience">
+
+                                {{ mentor.experience or 0 }}
+
+                                {% if mentor.experience == 1 %}
+
+                                    year
+
+                                {% else %}
+
+                                    years
+
+                                {% endif %}
+
+                            </strong>
+
+                        </td>
+
+
+                        <!-- SPECIALIZATION -->
+
+                        <td>
+
+                            <span class="mentor-specialization">
+
+                                {{ mentor.specialization or "Not specified" }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- STATUS -->
+
+                        <td>
+
+                            {% set mentor_status =
+                                mentor.status or "Active"
+                            %}
+
+                            <span
+                                class="mentor-status
+                                {{ mentor_status|lower }}">
+
+                                {{ mentor_status }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- ACTION -->
+
+                        <td>
+
+                           <div class="mentor-action-buttons">
+
+    <!-- EDIT -->
+    <a
+        href="{{ url_for(
+            'edit_mentor',
+            mentor_id=mentor.id
+        ) }}"
+        class="mentor-view-button">
+        Edit
+    </a>
+
+
+    <!-- DELETE -->
+    <form
+        action="{{ url_for(
+            'delete_mentor',
+            mentor_id=mentor.id
+        ) }}"
+        method="POST"
+        onsubmit="return confirm(
+            'Are you sure you want to delete this mentor?'
+        );">
+
+        <button
+            type="submit"
+            class="mentor-delete-button">
+            Delete
+        </button>
+
+    </form>
+
+</div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+
+                        <td colspan="6">
+
+                            <div class="mentors-empty-state">
+
+                                <h3>
+                                    No mentors found
+                                </h3>
+
+                                <p>
+                                    Add mentors to the mentors table to display them here.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+    
+
+<!-- =====================================================
+     USERS / TREKKERS MANAGEMENT
+     ===================================================== -->
+
+<section id="users"
+         class="users-management-section">
+
+
+    <div class="users-section-header">
+
+        <div>
+
+            <span class="section-label">
+                CUSTOMER MANAGEMENT
+            </span>
+
+            <h2>
+                Trekora Users
+            </h2>
+
+            <p>
+                View registered users and their account information.
+            </p>
+
+        </div>
+
+
+        <div class="users-total-card">
+
+            <span class="users-total-number">
+                {{ users|length }}
+            </span>
+
+            <span class="users-total-label">
+                Registered Users
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- USER SEARCH -->
+
+    <div class="users-toolbar">
+
+        <div class="users-search-box">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2">
+
+                <circle
+                    cx="11"
+                    cy="11"
+                    r="7">
+                </circle>
+
+                <path d="M20 20l-4-4">
+                </path>
+
+            </svg>
+
+
+            <input
+                type="text"
+                id="userSearch"
+                placeholder="Search by name, email or phone..."
+                onkeyup="searchUsers()">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- USERS TABLE -->
+
+    <div class="users-table-card">
+
+        <div class="users-table-wrapper">
+
+            <table
+                class="users-table"
+                id="usersTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>USER</th>
+                        <th>CONTACT</th>
+                        <th>REGISTERED ON</th>
+                        <th>USER ID</th>
+                        <th>ACTION</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                {% if users %}
+
+                    {% for user in users %}
+
+                    <tr>
+
+                        <!-- USER -->
+
+                        <td>
+
+                            <div class="user-info-cell">
+
+                                <div class="user-avatar">
+
+                                    {{ user.name[0]|upper }}
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        {{ user.name }}
+                                    </strong>
+
+                                    <span>
+                                        Trekora User
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- CONTACT -->
+
+                        <td>
+
+                            <div class="user-contact-cell">
+
+                                <span>
+                                    {{ user.email }}
+                                </span>
+
+                                <span>
+                                    {{ user.phone or "No phone" }}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- REGISTERED DATE -->
+
+                        <td>
+
+                            <span class="user-date">
+
+                                {% if user.created_at %}
+
+                                    {{ user.created_at.strftime(
+                                        "%d %b %Y"
+                                    ) }}
+
+                                {% else %}
+
+                                    Not available
+
+                                {% endif %}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- USER ID -->
+
+                        <td>
+
+                            <span class="user-id-badge">
+
+                                #{{ user.id }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- ACTION -->
+
+                        <td>
+
+                         <td>
+
+    <div class="user-action-buttons">
+
+
+        <!-- VIEW -->
+
+        <a
+            href="{{ url_for(
+                'admin_user_details',
+                user_id=user.id
+            ) }}"
+            class="user-view-button">
+
+            View
+
+        </a>
+
+
+
+        <!-- EDIT -->
+
+        <a
+            href="{{ url_for(
+                'edit_user',
+                user_id=user.id
+            ) }}"
+            class="user-edit-button">
+
+            Edit
+
+        </a>
+
+
+
+        <!-- DELETE -->
+
+        <form
+            action="{{ url_for(
+                'delete_user',
+                user_id=user.id
+            ) }}"
+            method="POST"
+            onsubmit="return confirm(
+                'Are you sure you want to delete this user?'
+            );">
+
+            <button
+                type="submit"
+                class="user-delete-button">
+
+                Delete
+
+            </button>
+
+        </form>
+
+
+    </div>
+
+</td>          </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+
+                {% else %}
+
+                    <tr>
+
+                        <td colspan="5">
+
+                            <div class="users-empty-state">
+
+                                <div class="users-empty-icon">
+
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.7">
+
+                                        <path
+                                            d="M16 21v-2a4 4 0 0 0-4-4H6
+                                               a4 4 0 0 0-4 4v2">
+                                        </path>
+
+                                        <circle
+                                            cx="9"
+                                            cy="7"
+                                            r="4">
+                                        </circle>
+
+                                        <path
+                                            d="M22 21v-2a4 4 0 0 0-3-3.87">
+                                        </path>
+
+                                        <path
+                                            d="M16 3.13a4 4 0 0 1 0 7.75">
+                                        </path>
+
+                                    </svg>
+
+                                </div>
+
+
+                                <h3>
+                                    No registered users yet
+                                </h3>
+
+
+                                <p>
+                                    Users will appear here after
+                                    creating a Trekora account.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+   <!-- =====================================================
+     PAYMENTS MANAGEMENT
+     ===================================================== -->
+
+<section id="payments"
+         class="payments-section">
+
+
+    <!-- =================================================
+         PAYMENTS HEADER
+         ================================================= -->
+
+    <div class="payments-header">
+
+        <div>
+
+            <span class="section-label">
+                PAYMENT MANAGEMENT
+            </span>
+
+            <h2>
+                Payments
+            </h2>
+
+            <p>
+                Monitor booking payments, payment status,
+                methods and transaction details.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         PAYMENT STATISTICS
+         ================================================= -->
+
+    <div class="payment-stats-grid">
+
+
+        <!-- =================================================
+             TOTAL PAYMENTS
+             ================================================= -->
+
+        <div class="payment-stat-card">
+
+            <div class="payment-stat-icon total">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <rect x="3"
+                          y="5"
+                          width="18"
+                          height="14"
+                          rx="2"/>
+
+                    <path d="M3 10h18"/>
+
+                </svg>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Total Payments
+                </span>
+
+                <strong>
+                    {{ total_payments }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PAID PAYMENTS
+             ================================================= -->
+
+        <div class="payment-stat-card">
+
+            <div class="payment-stat-icon paid">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <circle cx="12"
+                            cy="12"
+                            r="9"/>
+
+                    <path d="m8 12 2.5 2.5L16 9"/>
+
+                </svg>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Paid Payments
+                </span>
+
+                <strong>
+                    {{ paid_payments }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PENDING PAYMENTS
+             ================================================= -->
+
+        <div class="payment-stat-card">
+
+            <div class="payment-stat-icon pending">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <circle cx="12"
+                            cy="12"
+                            r="9"/>
+
+                    <path d="M12 7v5l3 2"/>
+
+                </svg>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Pending Payments
+                </span>
+
+                <strong>
+                    {{ pending_payments }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             REFUNDED PAYMENTS
+             ================================================= -->
+
+        <div class="payment-stat-card">
+
+            <div class="payment-stat-icon refunded">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <path d="M3 12a9 9 0 0 0 15.5 6.3"/>
+
+                    <path d="M3 12V6"/>
+
+                    <path d="M3 12h6"/>
+
+                    <path d="M21 12a9 9 0 0 0-15.5-6.3"/>
+
+                    <path d="M21 12v6"/>
+
+                    <path d="M21 12h-6"/>
+
+                </svg>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Refunded
+                </span>
+
+                <strong>
+                    {{ refunded_payments }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TOTAL PAID AMOUNT
+             ================================================= -->
+
+        <div class="payment-stat-card payment-stat-wide">
+
+            <div class="payment-stat-icon amount">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <rect x="3"
+                          y="5"
+                          width="18"
+                          height="14"
+                          rx="2"/>
+
+                    <path d="M7 10h10"/>
+
+                    <path d="M7 14h6"/>
+
+                </svg>
+
+            </div>
+
+            <div>
+
+                <span>
+                    Total Paid Amount
+                </span>
+
+                <strong>
+                    ₹{{ "%.2f"|format(
+                        total_paid_amount or 0
+                    ) }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         PAYMENT RECORDS
+         ================================================= -->
+
+    <div class="payments-card">
+
+
+        <!-- =================================================
+             PAYMENT TABLE HEADER
+             ================================================= -->
+
+        <div class="payments-card-header">
+
+            <div>
+
+                <h3>
+                    Payment Records
+                </h3>
+
+                <p>
+                    View payment information for all bookings.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="payment-search">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <circle cx="11"
+                            cy="11"
+                            r="7"/>
+
+                    <path d="m20 20-4-4"/>
+
+                </svg>
+
+                <input
+                    type="text"
+                    id="paymentSearch"
+                    placeholder="Search payments..."
+                    oninput="searchPayments()">
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PAYMENT FILTERS
+             ================================================= -->
+
+        <div class="payment-filters">
+
+
+            <!-- ALL -->
+
+            <button
+                type="button"
+                class="payment-filter-btn active"
+                data-payment-status="all"
+                onclick="filterPayments('all', this)">
+
+                All
+
+            </button>
+
+
+
+            <!-- PAID -->
+
+            <button
+                type="button"
+                class="payment-filter-btn"
+                data-payment-status="paid"
+                onclick="filterPayments('paid', this)">
+
+                Paid
+
+            </button>
+
+
+
+            <!-- PENDING -->
+
+            <button
+                type="button"
+                class="payment-filter-btn"
+                data-payment-status="pending"
+                onclick="filterPayments('pending', this)">
+
+                Pending
+
+            </button>
+
+
+
+            <!-- REFUNDED -->
+
+            <button
+                type="button"
+                class="payment-filter-btn"
+                data-payment-status="refunded"
+                onclick="filterPayments('refunded', this)">
+
+                Refunded
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             PAYMENT TABLE
+             ================================================= -->
+
+        <div class="payments-table-wrapper">
+
+            <table
+                class="payments-table"
+                id="paymentsTable">
+
+
+                <!-- TABLE HEADER -->
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Booking ID
+                        </th>
+
+                        <th>
+                            Customer
+                        </th>
+
+                        <th>
+                            Trek
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Payment Status
+                        </th>
+
+                        <th>
+                            Payment Method
+                        </th>
+
+                        <th>
+                            Payment Date
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <!-- TABLE BODY -->
+
+                <tbody>
+
+
+                {% if bookings %}
+
+
+                    {% for booking in bookings %}
+
+
+                    <tr>
+
+
+                        <!-- =================================
+                             BOOKING ID
+                             ================================= -->
+
+                        <td>
+
+                            <span class="payment-booking-id">
+
+                                {{ booking.booking_id }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- =================================
+                             CUSTOMER
+                             ================================= -->
+
+                        <td>
+
+                            <div class="payment-customer">
+
+
+                                <div class="payment-avatar">
+
+                                    {{ booking.name[0]|upper }}
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+
+                                        {{ booking.name }}
+
+                                    </strong>
+
+                                    <span>
+
+                                        {{ booking.email }}
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- =================================
+                             TREK
+                             ================================= -->
+
+                        <td>
+
+                            <span class="payment-trek">
+
+                                {{ booking.trek_name }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- =================================
+                             AMOUNT
+                             ================================= -->
+
+                        <td>
+
+                            <strong class="payment-amount">
+
+                                ₹{{ "%.2f"|format(
+                                    booking.total_amount|float
+                                ) }}
+
+                            </strong>
+
+                        </td>
+
+
+
+                        <!-- =================================
+                             PAYMENT STATUS
+                             ================================= -->
+
+                        <td>
+
+                            {% set payment_status =
+                                booking.payment_status or "Pending"
+                            %}
+
+                            <span
+                                class="payment-status {{ payment_status|lower }}">
+
+                                {{ payment_status }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- =================================
+                             PAYMENT METHOD
+                             ================================= -->
+
+                        <td>
+
+                            <span class="payment-method">
+
+                                {{ booking.payment_method
+                                   or "Not Selected" }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- =================================
+                             PAYMENT DATE
+                             ================================= -->
+
+                        <td>
+
+                            {% if booking.payment_date %}
+
+                                <span class="payment-date">
+
+                                    {{ booking.payment_date }}
+
+                                </span>
+
+                            {% else %}
+
+                                <span
+                                    class="payment-date pending-date">
+
+                                    Not Available
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- =================================
+                             ACTIONS
+                             ================================= -->
+
+                        <td>
+
+                            <div class="payment-actions">
+
+
+                                <!-- =================================
+                                     VIEW BOOKING
+                                     ================================= -->
+
+                                <a
+    href="{{ url_for(
+        'admin_payment_details',
+        booking_id=booking.booking_id
+    ) }}"
+    class="payment-view-btn">
+
+    View
+
+</a>
+
+
+                                <!-- =================================
+                                     CURRENT PAYMENT STATUS
+                                     ================================= -->
+
+                                {% set current_payment_status =
+                                    booking.payment_status or "Pending"
+                                %}
+
+                                {% set current_booking_status =
+                                    booking.status or "Pending"
+                                %}
+
+
+
+                                <!-- =================================
+                                     PENDING PAYMENT
+                                     ================================= -->
+
+                                {% if current_payment_status|lower == "pending" %}
+
+
+                                    {% if current_booking_status|lower == "cancelled" %}
+
+
+                                        <span
+                                            class="payment-cancelled-label">
+
+                                            Booking Cancelled
+
+                                        </span>
+
+
+                                    {% else %}
+
+
+                                        <form
+                                            action="{{ url_for(
+                                                'mark_payment_paid',
+                                                booking_id=booking.booking_id
+                                            ) }}"
+                                            method="POST"
+                                            onsubmit="return confirm(
+                                                'Mark this payment as Paid?'
+                                            );">
+
+
+                                            <button
+                                                type="submit"
+                                                class="payment-paid-btn">
+
+                                                Mark Paid
+
+                                            </button>
+
+
+                                        </form>
+
+
+                                    {% endif %}
+
+
+
+                                <!-- =================================
+                                     PAID PAYMENT
+                                     ================================= -->
+
+                                {% elif current_payment_status|lower == "paid" %}
+
+
+                                    <form
+                                        action="{{ url_for(
+                                            'mark_payment_refunded',
+                                            booking_id=booking.booking_id
+                                        ) }}"
+                                        method="POST"
+                                        onsubmit="return confirm(
+                                            'Mark this payment as Refunded?'
+                                        );">
+
+
+                                        <button
+                                            type="submit"
+                                            class="payment-refund-btn">
+
+                                            Refund
+
+                                        </button>
+
+
+                                    </form>
+
+
+
+                                <!-- =================================
+                                     REFUNDED PAYMENT
+                                     ================================= -->
+
+                                {% elif current_payment_status|lower == "refunded" %}
+
+
+                                    <span
+                                        class="payment-completed-label">
+
+                                        Refunded
+
+                                    </span>
+
+
+                                {% endif %}
+
+
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                {% else %}
+
+
+                    <!-- =================================
+                         EMPTY STATE
+                         ================================= -->
+
+                    <tr>
+
+                        <td colspan="8">
+
+                            <div class="payment-empty-state">
+
+
+                                <div class="payment-empty-icon">
+
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.8">
+
+                                        <rect
+                                            x="3"
+                                            y="5"
+                                            width="18"
+                                            height="14"
+                                            rx="2"/>
+
+                                        <path d="M3 10h18"/>
+
+                                    </svg>
+
+                                </div>
+
+
+                                <h3>
+
+                                    No payment records
+
+                                </h3>
+
+
+                                <p>
+
+                                    Payment records will appear here
+                                    when bookings are created.
+
+                                </p>
+
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+                {% endif %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+    <!-- =====================================================
+     SETTINGS
+     ===================================================== -->
+
+<section id="settings" class="settings-section">
+
+    <div class="settings-section-header">
+
+        <div>
+            <span class="section-label">
+                SYSTEM CONFIGURATION
+            </span>
+
+            <h2>
+                Admin Settings
+            </h2>
+
+            <p>
+                Manage your Trekora dashboard, appearance,
+                notifications and website preferences.
+            </p>
+        </div>
+
+    </div>
+
+
+   
+
+
+
+           
+
+            
+
+    <!-- ADMIN PROFILE -->
+
+<div class="settings-card">
+
+    <div class="settings-card-header">
+
+        <div>
+
+            <h3>
+                Admin Profile
+            </h3>
+
+            <p>
+                Manage administrator account information.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="settings-form-grid">
+
+        <div class="settings-input-group">
+
+            <label>
+                Admin Name
+            </label>
+
+            <input
+                type="text"
+                value="Trekora Admin"
+                id="adminName"
+                placeholder="Enter admin name"
+            >
+
+        </div>
+
+
+        <div class="settings-input-group">
+
+            <label>
+                Admin Email
+            </label>
+
+            <input
+                type="email"
+                value="admin@trekora.com"
+                id="adminEmail"
+                placeholder="Enter admin email"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="settings-card-footer">
+
+        <button
+            type="button"
+            class="settings-save-button"
+            onclick="saveAdminProfile()"
+        >
+            Save Profile
+        </button>
+
+    </div>
+
+</div>
+
+    <!-- WEBSITE SETTINGS -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <h3>
+                    Website Settings
+                </h3>
+
+                <p>
+                    Manage basic Trekora website information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-form-grid">
+
+            <div class="settings-input-group">
+
+                <label>
+                    Website Name
+                </label>
+
+                <input
+                    type="text"
+                    value="Trekora"
+                    id="websiteName"
+                >
+
+            </div>
+
+
+            <div class="settings-input-group">
+
+                <label>
+                    Contact Email
+                </label>
+
+                <input
+                    type="email"
+                    value="support@trekora.com"
+                    id="contactEmail"
+                >
+
+            </div>
+
+
+            <div class="settings-input-group">
+
+                <label>
+                    Contact Phone
+                </label>
+
+                <input
+                    type="text"
+                    value="+91 98765 43210"
+                    id="contactPhone"
+                >
+
+            </div>
+
+
+            <div class="settings-input-group">
+
+                <label>
+                    Website Location
+                </label>
+
+                <input
+                    type="text"
+                    value="Bengaluru, Karnataka"
+                    id="websiteLocation"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-card-footer">
+
+            <button
+                type="button"
+                class="settings-save-button"
+                onclick="saveWebsiteSettings()"
+            >
+                Save Changes
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOOKING SETTINGS -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <h3>
+                    Booking Settings
+                </h3>
+
+                <p>
+                    Control how trek bookings are handled.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-toggle-row">
+
+            <div>
+
+                <strong>
+                    Allow New Bookings
+                </strong>
+
+                <span>
+                    Allow customers to create new trek bookings.
+                </span>
+
+            </div>
+
+            <label class="settings-switch">
+
+                <input
+                    type="checkbox"
+                    id="allowBookings"
+                    checked
+                >
+
+                <span class="settings-slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="settings-toggle-row">
+
+            <div>
+
+                <strong>
+                    Automatic Booking Confirmation
+                </strong>
+
+                <span>
+                    Automatically confirm new bookings.
+                </span>
+
+            </div>
+
+            <label class="settings-switch">
+
+                <input
+                    type="checkbox"
+                    id="autoConfirmation"
+                >
+
+                <span class="settings-slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="settings-form-grid">
+
+            <div class="settings-input-group">
+
+                <label>
+                    Maximum Travellers Per Booking
+                </label>
+
+                <input
+                    type="number"
+                    value="10"
+                    min="1"
+                    max="50"
+                    id="maxTravellers"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-card-footer">
+
+            <button
+                type="button"
+                class="settings-save-button"
+                onclick="saveBookingSettings()"
+            >
+                Save Booking Settings
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <div class="settings-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <h3>
+                    Notifications
+                </h3>
+
+                <p>
+                    Choose which admin notifications are enabled.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-toggle-row">
+
+            <div>
+
+                <strong>
+                    New Booking Notifications
+                </strong>
+
+                <span>
+                    Receive notifications when a new booking is created.
+                </span>
+
+            </div>
+
+            <label class="settings-switch">
+
+                <input
+    type="checkbox"
+    id="bookingNotifications"
+    checked
+    onchange="saveNotificationSetting(
+        'booking_notifications',
+        this.checked
+    )"
+>
+
+                <span class="settings-slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="settings-toggle-row">
+
+            <div>
+
+                <strong>
+                    Payment Notifications
+                </strong>
+
+                <span>
+                    Receive notifications when payment status changes.
+                </span>
+
+            </div>
+
+            <label class="settings-switch">
+
+                <input
+    type="checkbox"
+    id="paymentNotifications"
+    checked
+    onchange="saveNotificationSetting(
+        'payment_notifications',
+        this.checked
+    )"
+>
+
+                <span class="settings-slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="settings-toggle-row">
+
+            <div>
+
+                <strong>
+                    Cancellation Notifications
+                </strong>
+
+                <span>
+                    Receive notifications when customers cancel bookings.
+                </span>
+
+            </div>
+
+            <label class="settings-switch">
+<input 
+    type="checkbox" 
+    id="cancellationNotifications" 
+    checked
+    onchange="saveNotificationSetting(
+        'cancellation_notifications',
+        this.checked
+    )"
+>
+                <span class="settings-slider"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- SYSTEM INFORMATION -->
+
+    <div class="settings-card system-information-card">
+
+        <div class="settings-card-header">
+
+            <div>
+
+                <h3>
+                    System Information
+                </h3>
+
+                <p>
+                    Current Trekora application information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-info-grid">
+
+            <div class="system-info-item">
+
+                <span>
+                    Application
+                </span>
+
+                <strong>
+                    Trekora
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-item">
+
+                <span>
+                    Version
+                </span>
+
+                <strong>
+                    1.0.0
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-item">
+
+                <span>
+                    Backend
+                </span>
+
+                <strong>
+                    Flask
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-item">
+
+                <span>
+                    Database
+                </span>
+
+                <strong>
+                    MySQL
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="admin-footer">
+
+        <span>
+            © 2026 Trekora
+        </span>
+
+        <span>
+            Trek Management System · Admin Dashboard
+        </span>
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     ADMIN JAVASCRIPT
+     ===================================================== -->
+
+<script src="{{ url_for('static', filename='admin.js') }}"></script>
+
+
+
+<!-- =====================================================
+     ADD TREK MODAL
+     ===================================================== -->
+
+<div id="addTrekModal"
+     class="trek-modal">
+
+
+    <div class="trek-modal-overlay"
+         onclick="closeAddTrekModal()">
+    </div>
+
+
+    <div class="trek-modal-content">
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="trek-modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    TREK MANAGEMENT
+                </span>
+
+                <h2>
+                    Add New Trek
+                </h2>
+
+                <p>
+                    Add a new trekking destination to Trekora.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="trek-modal-close"
+                onclick="closeAddTrekModal()">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+
+                    <path d="M18 6L6 18"/>
+                    <path d="M6 6l12 12"/>
+
+                </svg>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- ADD TREK FORM -->
+
+        <form
+            id="addTrekForm"
+            action="{{ url_for('add_trek') }}"
+            method="POST"
+            enctype="multipart/form-data">
+
+
+            <div class="trek-form-grid">
+
+
+                <!-- TREK NAME -->
+
+                <div class="trek-form-group full-width">
+
+                    <label>
+                        Trek Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="trek_name"
+                        placeholder="e.g. Kudremukh"
+                        required>
+
+                </div>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="trek-form-group">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        name="location"
+                        placeholder="e.g. Chikkamagaluru"
+                        required>
+
+                </div>
+
+
+
+                <!-- DIFFICULTY -->
+
+                <div class="trek-form-group">
+
+                    <label>
+                        Difficulty
+                    </label>
+
+                    <select
+                        name="difficulty"
+                        required>
+
+                        <option value="">
+                            Select difficulty
+                        </option>
+
+                        <option value="Easy">
+                            Easy
+                        </option>
+
+                        <option value="Moderate">
+                            Moderate
+                        </option>
+
+                        <option value="Difficult">
+                            Difficult
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- DURATION -->
+
+                <div class="trek-form-group">
+
+                    <label>
+                        Duration
+                    </label>
+
+                    <input
+                        type="text"
+                        name="duration"
+                        placeholder="e.g. 2 Days"
+                        required>
+
+                </div>
+
+
+
+                <!-- DISTANCE -->
+
+                <div class="trek-form-group">
+
+                    <label>
+                        Distance
+                    </label>
+
+                    <input
+                        type="text"
+                        name="distance"
+                        placeholder="e.g. 22 km"
+                        required>
+
+                </div>
+
+
+
+                <!-- ELEVATION -->
+
+                <div class="trek-form-group">
+
+                    <label>
+                        Elevation
+                    </label>
+
+                    <input
+                        type="text"
+                        name="elevation"
+                        placeholder="e.g. 1,894 m"
+                        required>
+
+                </div>
+
+
+
+                <!-- PRICE -->
+
+                <div class="trek-form-group">
+
+                    <label>
+                        Price Per Person
+                    </label>
+
+                    <div class="price-input">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            name="price"
+                            placeholder="1499"
+                            min="0"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RATING -->
+
+                <div class="trek-form-group">
+
+                    <label>
+                        Rating
+                    </label>
+
+                    <input
+                        type="number"
+                        name="rating"
+                        placeholder="4.8"
+                        min="0"
+                        max="5"
+                        step="0.1"
+                        required>
+
+                </div>
+
+
+
+                <!-- MENTOR -->
+
+                <div class="trek-form-group full-width">
+
+                    <label>
+                        Mentor
+                    </label>
+
+                    <input
+                        type="text"
+                        name="mentor"
+                        placeholder="e.g. Arjun Kumar"
+                        required>
+
+                </div>
+
+
+
+                <!-- TREK IMAGE -->
+
+                <div class="trek-form-group full-width">
+
+                    <label>
+                        Trek Image
+                    </label>
+
+
+                    <div class="trek-image-upload">
+
+
+                        <input
+                            type="file"
+                            id="trekImage"
+                            name="trek_image"
+                            accept="image/png, image/jpeg, image/jpg, image/webp"
+                            required>
+
+
+                        <label
+                            for="trekImage"
+                            class="trek-upload-box">
+
+
+                            <div class="trek-upload-icon">
+
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2">
+
+                                    <rect x="3"
+                                          y="3"
+                                          width="18"
+                                          height="18"
+                                          rx="2"/>
+
+                                    <circle cx="8.5"
+                                            cy="8.5"
+                                            r="1.5"/>
+
+                                    <path d="M21 15l-5-5L5 21"/>
+
+                                </svg>
+
+                            </div>
+
+
+                            <div class="trek-upload-text">
+
+                                <strong>
+                                    Choose Trek Image
+                                </strong>
+
+                                <span>
+                                    PNG, JPG or WEBP · Recommended 1200 × 800 px
+                                </span>
+
+                            </div>
+
+
+                        </label>
+
+
+                        <div
+                            id="trekImagePreview"
+                            class="trek-image-preview">
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SHORT DESCRIPTION -->
+
+                <div class="trek-form-group full-width">
+
+                    <label>
+                        Short Description
+                    </label>
+
+                    <input
+                        type="text"
+                        name="short_description"
+                        placeholder="A short description of the trek..."
+                        required>
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="trek-form-group full-width">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        name="description"
+                        rows="4"
+                        placeholder="Write a detailed description of the trek..."
+                        required></textarea>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- MODAL ACTIONS -->
+
+            <div class="trek-modal-actions">
+
+
+                <button
+                    type="button"
+                    class="cancel-trek-btn"
+                    onclick="closeAddTrekModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-trek-btn">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2">
+
+                        <path d="M5 12l4 4L19 6"/>
+
+                    </svg>
+
+                    Save Trek
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

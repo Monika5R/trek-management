@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Mentor Management | Trekora</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='admin.css') }}">
+
+</head>
+
+
+<body>
+
+    <div class="mentor-management-page">
+
+        <!-- HEADER -->
+
+        <div class="mentor-management-header">
+
+            <div>
+
+                <span class="section-label">
+                    MENTOR MANAGEMENT
+                </span>
+
+                <h1>
+                    {{ mentor.name }}
+                </h1>
+
+                <p>
+                    Manage mentor information and Trekora mentor details.
+                </p>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('admin_dashboard') }}#mentors"
+                class="mentor-back-button">
+
+                ← Back to Mentors
+
+            </a>
+
+        </div>
+
+
+        <!-- MENTOR PROFILE -->
+
+        <div class="mentor-profile-card">
+
+            <div class="mentor-profile-avatar">
+
+                {{ mentor.name[0]|upper }}
+
+            </div>
+
+
+            <div class="mentor-profile-info">
+
+                <h2>
+                    {{ mentor.name }}
+                </h2>
+
+                <span class="mentor-profile-role">
+                    Trek Mentor
+                </span>
+
+                <span class="mentor-profile-specialization">
+
+                    {{ mentor.specialization or "Specialization not specified" }}
+
+                </span>
+
+            </div>
+
+
+            {% set mentor_status =
+                mentor.status or "Active"
+            %}
+
+            <span
+                class="mentor-status {{ mentor_status|lower }}">
+
+                {{ mentor_status }}
+
+            </span>
+
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="mentor-details-card">
+
+            <div class="mentor-details-header">
+
+                <h2>
+                    Mentor Information
+                </h2>
+
+                <p>
+                    Current mentor information stored in Trekora.
+                </p>
+
+            </div>
+
+
+            <div class="mentor-details-grid">
+
+                <!-- NAME -->
+
+                <div class="mentor-detail-item">
+
+                    <span class="mentor-detail-label">
+                        Full Name
+                    </span>
+
+                    <strong>
+                        {{ mentor.name }}
+                    </strong>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="mentor-detail-item">
+
+                    <span class="mentor-detail-label">
+                        Email
+                    </span>
+
+                    <strong>
+                        {{ mentor.email or "Not provided" }}
+                    </strong>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="mentor-detail-item">
+
+                    <span class="mentor-detail-label">
+                        Phone
+                    </span>
+
+                    <strong>
+                        {{ mentor.phone or "Not provided" }}
+                    </strong>
+
+                </div>
+
+
+                <!-- EXPERIENCE -->
+
+                <div class="mentor-detail-item">
+
+                    <span class="mentor-detail-label">
+                        Experience
+                    </span>
+
+                    <strong>
+
+                        {{ mentor.experience or 0 }}
+
+                        {% if mentor.experience == 1 %}
+                            year
+                        {% else %}
+                            years
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+                <!-- SPECIALIZATION -->
+
+                <div class="mentor-detail-item full">
+
+                    <span class="mentor-detail-label">
+                        Specialization
+                    </span>
+
+                    <strong>
+                        {{ mentor.specialization or "Not specified" }}
+                    </strong>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="mentor-detail-item">
+
+                    <span class="mentor-detail-label">
+                        Status
+                    </span>
+
+                    <strong>
+                        {{ mentor_status }}
+                    </strong>
+
+                </div>
+
+
+                <!-- CREATED -->
+
+                <div class="mentor-detail-item">
+
+                    <span class="mentor-detail-label">
+                        Added On
+                    </span>
+
+                    <strong>
+
+                        {% if mentor.created_at %}
+
+                            {{ mentor.created_at.strftime(
+                                '%d %b %Y'
+                            ) }}
+
+                        {% else %}
+
+                            Not available
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FUTURE ACTIONS -->
+
+        <div class="mentor-management-actions">
+
+            <h2>
+                Mentor Actions
+            </h2>
+
+            <p>
+                Mentor editing and status management can be performed here.
+            </p>
+
+            <button
+                type="button"
+                class="mentor-edit-placeholder"
+                onclick="alert('Mentor editing will be added next.')">
+
+                Edit Mentor
+
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Trek | Trekora Admin</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='admin.css') }}">
+
+    <style>
+
+        body {
+            background: #f5f7f6;
+        }
+
+        .edit-page {
+            margin-left: 255px;
+            padding: 35px;
+            min-height: 100vh;
+        }
+
+        .edit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .edit-header-left h1 {
+            margin: 0;
+            color: #294238;
+            font-size: 26px;
+        }
+
+        .edit-header-left p {
+            margin: 7px 0 0;
+            color: #89958e;
+            font-size: 13px;
+        }
+
+        .back-button {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 15px;
+            border: 1px solid #dce5e0;
+            background: white;
+            color: #39564a;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            background: #eef5f1;
+        }
+
+        .edit-card {
+            background: white;
+            border: 1px solid #e1e8e4;
+            border-radius: 14px;
+            padding: 28px;
+            max-width: 1100px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #39564a;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #dce5e0;
+            border-radius: 8px;
+            padding: 11px 13px;
+            font-family: inherit;
+            font-size: 13px;
+            color: #294238;
+            background: #fbfcfb;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #6d9985;
+            background: white;
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .current-image {
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            background: #f8faf9;
+            border: 1px solid #e1e8e4;
+            border-radius: 10px;
+        }
+
+        .current-image img {
+            width: 130px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .current-image-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .current-image-info strong {
+            color: #294238;
+            font-size: 12px;
+        }
+
+        .current-image-info span {
+            color: #89958e;
+            font-size: 11px;
+        }
+
+        .image-note {
+            color: #89958e;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 28px;
+            padding-top: 22px;
+            border-top: 1px solid #edf1ef;
+        }
+
+        .cancel-button,
+        .save-button {
+            border: none;
+            border-radius: 8px;
+            padding: 11px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cancel-button {
+            background: #f1f4f2;
+            color: #52665d;
+        }
+
+        .save-button {
+            background: #315c4b;
+            color: white;
+        }
+
+        .save-button:hover {
+            background: #264a3d;
+        }
+
+        @media (max-width: 900px) {
+
+            .edit-page {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .edit-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .edit-card {
+                padding: 18px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .cancel-button,
+            .save-button {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-mark">
+                T
+            </div>
+
+            <div>
+
+                <strong>
+                    Trekora
+                </strong>
+
+                <span>
+                    Admin Panel
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <!-- FIXED: admin_dashboard -->
+
+            <a href="{{ url_for('admin_dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('admin_dashboard') }}#bookings">
+                Bookings
+            </a>
+
+            <a href="{{ url_for('admin_dashboard') }}#treks"
+               class="active">
+                Treks
+            </a>
+
+            <a href="{{ url_for('admin_dashboard') }}#mentors">
+                Mentors
+            </a>
+
+            <a href="{{ url_for('admin_dashboard') }}#users">
+                Users
+            </a>
+
+            <a href="{{ url_for('admin_dashboard') }}#payments">
+                Payments
+            </a>
+
+            <a href="{{ url_for('admin_dashboard') }}#settings">
+                Settings
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="{{ url_for('home') }}">
+                Visit Website
+            </a>
+
+            <a href="{{ url_for('admin_logout') }}"
+               class="logout-link">
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="edit-page">
+
+
+        <!-- HEADER -->
+
+        <div class="edit-header">
+
+            <div class="edit-header-left">
+
+                <h1>
+                    Edit Trek
+                </h1>
+
+                <p>
+                    Update the information for
+                    <strong>
+                        {{ trek.name }}
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <!-- FIXED: admin_dashboard -->
+
+            <a
+                href="{{ url_for('admin_dashboard') }}#treks"
+                class="back-button">
+
+                ← Back to Treks
+
+            </a>
+
+        </div>
+
+
+
+        <!-- EDIT CARD -->
+
+        <div class="edit-card">
+
+
+            <form
+                action="{{ url_for('update_trek', trek_name=trek.name) }}"
+                method="POST"
+                enctype="multipart/form-data">
+
+
+                <div class="form-grid">
+
+
+                    <!-- TREK NAME -->
+
+                    <div class="form-group">
+
+                        <label for="trek_name">
+                            Trek Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="trek_name"
+                            name="trek_name"
+                            value="{{ trek.name }}"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- LOCATION -->
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            value="{{ trek.location }}"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- DIFFICULTY -->
+
+                    <div class="form-group">
+
+                        <label for="difficulty">
+                            Difficulty
+                        </label>
+
+                        <select
+                            id="difficulty"
+                            name="difficulty"
+                            required>
+
+                            <option value="Easy"
+                                {% if trek.difficulty == "Easy" %}
+                                    selected
+                                {% endif %}>
+                                Easy
+                            </option>
+
+                            <option value="Moderate"
+                                {% if trek.difficulty == "Moderate" %}
+                                    selected
+                                {% endif %}>
+                                Moderate
+                            </option>
+
+                            <option value="Difficult"
+                                {% if trek.difficulty == "Difficult" %}
+                                    selected
+                                {% endif %}>
+                                Difficult
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- DURATION -->
+
+                    <div class="form-group">
+
+                        <label for="duration">
+                            Duration
+                        </label>
+
+                        <input
+                            type="text"
+                            id="duration"
+                            name="duration"
+                            value="{{ trek.duration }}"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- DISTANCE -->
+
+                    <div class="form-group">
+
+                        <label for="distance">
+                            Distance
+                        </label>
+
+                        <input
+                            type="text"
+                            id="distance"
+                            name="distance"
+                            value="{{ trek.distance }}"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- ELEVATION -->
+
+                    <div class="form-group">
+
+                        <label for="elevation">
+                            Elevation
+                        </label>
+
+                        <input
+                            type="text"
+                            id="elevation"
+                            name="elevation"
+                            value="{{ trek.elevation }}"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- PRICE -->
+
+                    <div class="form-group">
+
+                        <label for="price">
+                            Price (₹)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="price"
+                            name="price"
+                            value="{{ trek.price }}"
+                            min="0"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- RATING -->
+
+                    <div class="form-group">
+
+                        <label for="rating">
+                            Rating
+                        </label>
+
+                        <input
+                            type="number"
+                            id="rating"
+                            name="rating"
+                            value="{{ trek.rating }}"
+                            min="0"
+                            max="5"
+                            step="0.1"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- MENTOR -->
+
+                    <div class="form-group">
+
+                        <label for="mentor">
+                            Mentor
+                        </label>
+
+                        <input
+                            type="text"
+                            id="mentor"
+                            name="mentor"
+                            value="{{ trek.mentor }}"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- TREK IMAGE -->
+
+                    <div class="form-group full">
+
+                        <label for="trek_image">
+                            Trek Image
+                        </label>
+
+
+                        <div class="current-image">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='images/' + trek.image
+                                ) }}"
+                                alt="{{ trek.name }}">
+
+
+                            <div class="current-image-info">
+
+                                <strong>
+                                    Current Image
+                                </strong>
+
+                                <span>
+                                    {{ trek.image }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <input
+                            type="file"
+                            id="trek_image"
+                            name="trek_image"
+                            accept="image/png, image/jpeg, image/jpg, image/webp">
+
+
+                        <div class="image-note">
+
+                            Leave empty to keep the current image.
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SHORT DESCRIPTION -->
+
+                    <div class="form-group full">
+
+                        <label for="short_description">
+                            Short Description
+                        </label>
+
+                        <textarea
+                            id="short_description"
+                            name="short_description"
+                            required>{{ trek.short_description }}</textarea>
+
+                    </div>
+
+
+
+                    <!-- FULL DESCRIPTION -->
+
+                    <div class="form-group full">
+
+                        <label for="description">
+                            Full Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            required>{{ trek.description }}</textarea>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="form-actions">
+
+
+                    <!-- FIXED: admin_dashboard -->
+
+                    <a
+                        href="{{ url_for('admin_dashboard') }}#treks"
+                        class="cancel-button">
+
+                        Cancel
+
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="save-button">
+
+                        Save Changes
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

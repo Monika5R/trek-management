@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Add Mentor | Trekora</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='admin.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="mentor-form-page">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <div class="mentor-form-header">
+
+        <div>
+
+            <span class="section-label">
+                MENTOR MANAGEMENT
+            </span>
+
+            <h1>
+                Add New Mentor
+            </h1>
+
+            <p>
+                Add a new trekking mentor to Trekora.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('admin_dashboard') }}#mentors"
+            class="mentor-back-button">
+
+            ← Back to Mentors
+
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         FORM CARD
+         ===================================================== -->
+
+    <div class="mentor-form-card">
+
+        <form
+            action="{{ url_for('add_mentor') }}"
+            method="POST">
+
+
+            <!-- =================================================
+                 BASIC INFORMATION
+                 ================================================= -->
+
+            <div class="mentor-form-section">
+
+                <h2>
+                    Mentor Information
+                </h2>
+
+                <p>
+                    Enter the details of the new Trekora mentor.
+                </p>
+
+
+                <div class="mentor-form-grid">
+
+
+                    <!-- NAME -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Full Name
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Enter mentor name"
+                            required>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            placeholder="Enter phone number">
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="mentor@trekora.com">
+
+                    </div>
+
+
+                    <!-- EXPERIENCE -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Experience
+                        </label>
+
+                        <div class="mentor-input-with-unit">
+
+                            <input
+                                type="number"
+                                name="experience"
+                                min="0"
+                                max="50"
+                                value="0">
+
+                            <span>
+                                Years
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SPECIALIZATION -->
+
+                    <div class="mentor-form-group full">
+
+                        <label>
+                            Specialization
+                        </label>
+
+                        <input
+                            type="text"
+                            name="specialization"
+                            placeholder="Example: Western Ghats Trekking">
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select name="status">
+
+                            <option value="Active">
+                                Active
+                            </option>
+
+                            <option value="Inactive">
+                                Inactive
+                            </option>
+
+                            <option value="Suspended">
+                                Suspended
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTIONS
+                 ================================================= -->
+
+            <div class="mentor-form-actions">
+
+                <a
+                    href="{{ url_for('admin_dashboard') }}#mentors"
+                    class="mentor-form-cancel">
+
+                    Cancel
+
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="mentor-form-submit">
+
+                    Add Mentor
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

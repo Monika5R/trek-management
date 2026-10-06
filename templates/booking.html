@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Book {{ trek.name }} | Trekora
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='booking.css'
+        ) }}"
+    >
+
+</head>
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a
+            href="/"
+            class="logo"
+        >
+
+            <span class="logo-icon">
+                🌿
+            </span>
+
+            TREKORA
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/#treks">
+                Explore Treks
+            </a>
+
+            <a href="/#features">
+                Features
+            </a>
+
+            <a href="/#about">
+                About
+            </a>
+
+            <a
+                href="/#treks"
+                class="nav-book"
+            >
+                Explore Now
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="booking-hero">
+
+        <div class="hero-small">
+            🌿 TREKORA BOOKING
+        </div>
+
+        <h1>
+            Book Your Adventure
+        </h1>
+
+        <p>
+            Complete your details and get ready for an unforgettable
+            trekking experience.
+        </p>
+
+    </section>
+
+
+    <!-- ================= BACK LINK ================= -->
+
+    <div class="back-link">
+
+        <a
+            href="{{ url_for(
+                'trek_details',
+                trek_name=trek.name
+            ) }}"
+        >
+
+            ← Back to {{ trek.name }}
+
+        </a>
+
+    </div>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="booking-wrapper">
+
+
+        <!-- ================= BOOKING FORM ================= -->
+
+        <section class="booking-form-card">
+
+
+            <div class="form-heading">
+
+                <h2>
+                    Trek Booking Details
+                </h2>
+
+                <p>
+                    Please provide accurate information for a safe
+                    and smooth trekking experience.
+                </p>
+
+            </div>
+
+
+            <!-- ================= FORM ================= -->
+
+            <form
+                action="{{ url_for('submit_booking') }}"
+                method="POST"
+                id="bookingForm"
+            >
+
+
+                <!-- Hidden Trek Name -->
+
+                <input
+                    type="hidden"
+                    name="trek_name"
+                    value="{{ trek.name }}"
+                >
+
+
+                <!-- ================= PERSONAL INFORMATION ================= -->
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        👤
+                    </div>
+
+                    <h3>
+                        Personal Information
+                    </h3>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address *
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number *
+                        </label>
+
+                        <div class="phone-box">
+
+                            <div class="country-code">
+                                +91
+                            </div>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="10-digit mobile number"
+                                pattern="[0-9]{10}"
+                                maxlength="10"
+                                required
+                            >
+
+                        </div>
+
+                        <span class="help-text">
+                            Enter your 10-digit mobile number.
+                        </span>
+
+                    </div>
+
+
+                    <!-- TREK DATE -->
+
+                    <div class="form-group">
+
+                        <label for="trek_date">
+                            Trek Date *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="trek_date"
+                            name="trek_date"
+                            required
+                        >
+
+                        <span class="help-text">
+                            Select your preferred trekking date.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= TREK INFORMATION ================= -->
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🥾
+                    </div>
+
+                    <h3>
+                        Trek Information
+                    </h3>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- PEOPLE -->
+
+                    <div class="form-group">
+
+                        <label for="people">
+                            Number of People *
+                        </label>
+
+                        <select
+                            id="people"
+                            name="people"
+                            required
+                        >
+
+                            {% set max_people =
+                                max_travellers|default(10)|int
+                            %}
+
+                            {% for number in range(
+                                1,
+                                max_people + 1
+                            ) %}
+
+                                <option
+                                    value="{{ number }}"
+                                >
+
+                                    {% if number == 1 %}
+
+                                        1 Person
+
+                                    {% else %}
+
+                                        {{ number }} People
+
+                                    {% endif %}
+
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                        <span class="help-text">
+                            Maximum {{ max_people }} travellers per booking.
+                        </span>
+
+                    </div>
+
+
+                    <!-- EXPERIENCE -->
+
+                    <div class="form-group">
+
+                        <label for="experience">
+                            Trek Experience *
+                        </label>
+
+                        <select
+                            id="experience"
+                            name="experience"
+                            required
+                        >
+
+                            <option value="">
+                                Select experience level
+                            </option>
+
+                            <option value="Beginner">
+                                Beginner
+                            </option>
+
+                            <option value="Intermediate">
+                                Intermediate
+                            </option>
+
+                            <option value="Experienced">
+                                Experienced
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= EMERGENCY CONTACT ================= -->
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🛡️
+                    </div>
+
+                    <h3>
+                        Emergency Contact
+                    </h3>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- EMERGENCY NAME -->
+
+                    <div class="form-group">
+
+                        <label for="emergency_name">
+                            Contact Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="emergency_name"
+                            name="emergency_name"
+                            placeholder="Emergency contact name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMERGENCY PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="emergency_phone">
+                            Contact Phone *
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="emergency_phone"
+                            name="emergency_phone"
+                            placeholder="10-digit mobile number"
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================================
+                     PAYMENT METHOD
+                ====================================================== -->
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        💳
+                    </div>
+
+                    <h3>
+                        Payment Method
+                    </h3>
+
+                </div>
+
+
+                <p class="payment-subtitle">
+
+                    Select your preferred payment method for this booking.
+
+                </p>
+
+
+                <!-- ================= PAYMENT OPTIONS ================= -->
+
+                <div class="payment-options">
+
+
+                    <!-- UPI -->
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment_method"
+                            value="UPI"
+                            required
+                        >
+
+                        <div class="payment-option-content">
+
+                            <div class="payment-icon">
+                                UPI
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    UPI
+                                </strong>
+
+                                <span>
+                                    Google Pay, PhonePe, Paytm
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <!-- CREDIT CARD -->
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment_method"
+                            value="Credit Card"
+                        >
+
+                        <div class="payment-option-content">
+
+                            <div class="payment-icon">
+                                CARD
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Credit Card
+                                </strong>
+
+                                <span>
+                                    Visa, Mastercard and more
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <!-- DEBIT CARD -->
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment_method"
+                            value="Debit Card"
+                        >
+
+                        <div class="payment-option-content">
+
+                            <div class="payment-icon">
+                                CARD
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Debit Card
+                                </strong>
+
+                                <span>
+                                    Pay securely using your debit card
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <!-- NET BANKING -->
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment_method"
+                            value="Net Banking"
+                        >
+
+                        <div class="payment-option-content">
+
+                            <div class="payment-icon">
+                                BANK
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Net Banking
+                                </strong>
+
+                                <span>
+                                    Pay securely through your bank
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+
+                    <!-- CASH -->
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment_method"
+                            value="Cash"
+                        >
+
+                        <div class="payment-option-content">
+
+                            <div class="payment-icon">
+                                CASH
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Cash / Pay Later
+                                </strong>
+
+                                <span>
+                                    Pay at the trek location
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+
+                <!-- =====================================================
+                     UPI PAYMENT PANEL
+                ====================================================== -->
+
+                <div
+                    id="upiPanel"
+                    class="payment-panel"
+                >
+
+                    <div class="payment-panel-title">
+                        Pay using UPI
+                    </div>
+
+                    <div class="payment-panel-description">
+
+                        Enter your UPI ID to continue with the payment.
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label for="upi_id">
+                            UPI ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="upi_id"
+                            name="upi_id"
+                            placeholder="example@upi"
+                        >
+
+                        <div class="upi-example">
+
+                            Example: monika@oksbi
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="upi-pay-box">
+
+                        <strong>
+                            UPI payment
+                        </strong>
+
+                        <span>
+                            Google Pay • PhonePe • Paytm • BHIM
+                        </span>
+
+                    </div>
+
+
+                    <div class="payment-amount-box">
+
+                        <span>
+                            Amount to pay
+                        </span>
+
+                        <strong id="upiAmount">
+                            ₹{{ trek.price }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================================
+                     CARD PAYMENT PANEL
+                ====================================================== -->
+
+                <div
+                    id="cardPanel"
+                    class="payment-panel"
+                >
+
+                    <div class="payment-panel-title">
+                        Card Payment
+                    </div>
+
+                    <div class="payment-panel-description">
+
+                        Enter your card details to continue.
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label for="card_number">
+                            Card Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="card_number"
+                            name="card_number"
+                            placeholder="1234 5678 9012 3456"
+                            maxlength="19"
+                            inputmode="numeric"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div class="card-row">
+
+
+                        <div class="payment-field">
+
+                            <label for="card_expiry">
+                                Expiry Date
+                            </label>
+
+                            <input
+                                type="text"
+                                id="card_expiry"
+                                name="card_expiry"
+                                placeholder="MM / YY"
+                                maxlength="5"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                        <div class="payment-field">
+
+                            <label for="card_cvv">
+                                CVV
+                            </label>
+
+                            <input
+                                type="password"
+                                id="card_cvv"
+                                name="card_cvv"
+                                placeholder="•••"
+                                maxlength="3"
+                                inputmode="numeric"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label for="card_name">
+                            Cardholder Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="card_name"
+                            name="card_name"
+                            placeholder="Name on card"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div class="payment-amount-box">
+
+                        <span>
+                            Amount to pay
+                        </span>
+
+                        <strong id="cardAmount">
+                            ₹{{ trek.price }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================================
+                     NET BANKING PANEL
+                ====================================================== -->
+
+                <div
+                    id="bankPanel"
+                    class="payment-panel"
+                >
+
+                    <div class="payment-panel-title">
+                        Net Banking
+                    </div>
+
+                    <div class="payment-panel-description">
+
+                        Select your bank to continue.
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label for="bank_name">
+                            Select Bank
+                        </label>
+
+                        <select
+                            id="bank_name"
+                            name="bank_name"
+                        >
+
+                            <option value="">
+                                Select your bank
+                            </option>
+
+                            <option value="SBI">
+                                State Bank of India
+                            </option>
+
+                            <option value="HDFC">
+                                HDFC Bank
+                            </option>
+
+                            <option value="ICICI">
+                                ICICI Bank
+                            </option>
+
+                            <option value="Axis">
+                                Axis Bank
+                            </option>
+
+                            <option value="Kotak">
+                                Kotak Mahindra Bank
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="payment-amount-box">
+
+                        <span>
+                            Amount to pay
+                        </span>
+
+                        <strong id="bankAmount">
+                            ₹{{ trek.price }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================================
+                     CASH PAYMENT PANEL
+                ====================================================== -->
+
+                <div
+                    id="cashPanel"
+                    class="payment-panel"
+                >
+
+                    <div class="payment-panel-title">
+                        Cash / Pay Later
+                    </div>
+
+                    <div class="payment-panel-description">
+
+                        You can pay the trek amount at the designated
+                        trek location or booking counter.
+
+                    </div>
+
+
+                    <div class="payment-amount-box">
+
+                        <span>
+                            Amount due
+                        </span>
+
+                        <strong id="cashAmount">
+                            ₹{{ trek.price }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= PAYMENT NOTE ================= -->
+
+                <div class="payment-note">
+
+                    🔒 Your selected payment method will be saved with
+                    your booking. Payment will remain
+                    <strong>Pending</strong> until it is confirmed.
+
+                </div>
+
+
+                <!-- ================= TERMS ================= -->
+
+                <div class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
+                        value="accepted"
+                        required
+                    >
+
+                    <label for="terms">
+
+                        I confirm that the information provided is correct
+                        and I agree to Trekora's booking terms and safety
+                        guidelines.
+
+                    </label>
+
+                </div>
+
+
+                <!-- ================= SUBMIT ================= -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                    id="submitBookingBtn"
+                >
+
+                    <span class="submit-text">
+                        Continue Booking →
+                    </span>
+
+                    <span class="submit-loading">
+                        Processing...
+                    </span>
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- =====================================================
+             TREK SUMMARY
+        ====================================================== -->
+
+        <aside class="summary-card">
+
+
+            <img
+                class="summary-image"
+                src="{{ url_for(
+                    'static',
+                    filename='images/' + trek.image
+                ) }}"
+                alt="{{ trek.name }}"
+            >
+
+
+            <div class="summary-content">
+
+
+                <div class="summary-label">
+                    Your Trek
+                </div>
+
+
+                <h2>
+                    {{ trek.name }}
+                </h2>
+
+
+                <div class="location">
+                    📍 {{ trek.location }}
+                </div>
+
+
+                <div class="summary-details">
+
+
+                    <div class="detail-box">
+
+                        <div class="detail-label">
+                            Difficulty
+                        </div>
+
+                        <div class="detail-value">
+                            {{ trek.difficulty }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <div class="detail-label">
+                            Duration
+                        </div>
+
+                        <div class="detail-value">
+                            {{ trek.duration }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <div class="detail-label">
+                            Distance
+                        </div>
+
+                        <div class="detail-value">
+                            {{ trek.distance }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <div class="detail-label">
+                            Rating
+                        </div>
+
+                        <div class="detail-value">
+                            ⭐ {{ trek.rating }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= PRICE ================= -->
+
+                <div class="price-box">
+
+                    <div class="price-title">
+                        Trek Package
+                    </div>
+
+                    <div class="price">
+                        ₹{{ trek.price }}
+                    </div>
+
+                    <div class="per-person">
+                        per person
+                    </div>
+
+                </div>
+
+
+                <!-- ================= TOTAL ================= -->
+
+                <div class="total-box">
+
+                    <span>
+
+                        Total for
+
+                        <span id="personCount">
+                            1
+                        </span>
+
+                        person
+
+                    </span>
+
+                    <span id="totalAmount">
+                        ₹{{ trek.price }}
+                    </span>
+
+                </div>
+
+
+                <div class="secure-note">
+
+                    🔒 Secure booking
+                    &nbsp; • &nbsp;
+                    Easy cancellation
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+    <!-- ================= BOOKING DATA ================= -->
+
+    <script
+        id="booking-data"
+        type="application/json"
+    >
+    {
+        "trekPrice": {{ trek.price|float }},
+        "maxTravellers": {{ max_travellers|default(10)|int }}
+    }
+    </script>
+
+
+    <!-- ================= BOOKING JAVASCRIPT ================= -->
+
+    <script
+        src="{{ url_for(
+            'static',
+            filename='booking.js'
+        ) }}"
+    ></script>
+
+</body>
+
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Mentor | Trekora</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='admin.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="mentor-form-page">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <div class="mentor-form-header">
+
+        <div>
+
+            <span class="section-label">
+                MENTOR MANAGEMENT
+            </span>
+
+            <h1>
+                Edit Mentor
+            </h1>
+
+            <p>
+                Update the details of this Trekora mentor.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('admin_dashboard') }}#mentors"
+            class="mentor-back-button">
+
+            ← Back to Mentors
+
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         FORM CARD
+         ===================================================== -->
+
+    <div class="mentor-form-card">
+
+        <form
+            action="{{ url_for(
+                'edit_mentor',
+                mentor_id=mentor.id
+            ) }}"
+            method="POST">
+
+
+            <div class="mentor-form-section">
+
+                <h2>
+                    Mentor Information
+                </h2>
+
+                <p>
+                    Update the mentor information below.
+                </p>
+
+
+                <div class="mentor-form-grid">
+
+
+                    <!-- NAME -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Full Name
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ mentor.name }}"
+                            placeholder="Enter mentor name"
+                            required>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            value="{{ mentor.phone or '' }}"
+                            placeholder="Enter phone number">
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ mentor.email or '' }}"
+                            placeholder="mentor@trekora.com">
+
+                    </div>
+
+
+                    <!-- EXPERIENCE -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Experience
+                        </label>
+
+                        <div class="mentor-input-with-unit">
+
+                            <input
+                                type="number"
+                                name="experience"
+                                min="0"
+                                max="50"
+                                value="{{ mentor.experience or 0 }}">
+
+                            <span>
+                                Years
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SPECIALIZATION -->
+
+                    <div class="mentor-form-group full">
+
+                        <label>
+                            Specialization
+                        </label>
+
+                        <input
+                            type="text"
+                            name="specialization"
+                            value="{{ mentor.specialization or '' }}"
+                            placeholder="Example: Western Ghats Trekking">
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="mentor-form-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select name="status">
+
+                            <option
+                                value="Active"
+                                {% if mentor.status == "Active" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Active
+                            </option>
+
+
+                            <option
+                                value="Inactive"
+                                {% if mentor.status == "Inactive" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Inactive
+                            </option>
+
+
+                            <option
+                                value="Suspended"
+                                {% if mentor.status == "Suspended" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Suspended
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTIONS
+                 ================================================= -->
+
+            <div class="mentor-form-actions">
+
+                <a
+                    href="{{ url_for('admin_dashboard') }}#mentors"
+                    class="mentor-form-cancel">
+
+                    Cancel
+
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="mentor-form-submit">
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

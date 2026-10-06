@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ trek.name }} | Trekora
+    </title>
+
+    <style>
+
+        /* =========================
+           GLOBAL
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #071f17 0%,
+                    #0d3024 35%,
+                    #f2f0e8 35%,
+                    #f2f0e8 100%
+                );
+
+            color: #17251f;
+
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .navbar {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            padding: 22px 6%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0)
+                );
+        }
+
+        .logo {
+
+            color: white;
+
+            font-size: 26px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #8ee06b;
+        }
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 32px;
+        }
+
+        .nav-links a {
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #9be879;
+        }
+
+        .nav-book {
+
+            background: #62b83f;
+
+            padding: 11px 22px;
+
+            border-radius: 30px;
+
+            color: white !important;
+
+            box-shadow:
+                0 8px 20px
+                rgba(50, 130, 40, 0.3);
+        }
+
+        .nav-book:hover {
+
+            background: #4b9d30;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+
+            min-height: 590px;
+
+            position: relative;
+
+            background-image:
+
+                linear-gradient(
+                    90deg,
+                    rgba(3, 18, 13, 0.88) 0%,
+                    rgba(3, 18, 13, 0.60) 45%,
+                    rgba(3, 18, 13, 0.20) 100%
+                ),
+
+                url(
+                    "/static/images/{{ trek.image }}"
+                );
+
+            background-size: cover;
+
+            background-position: center;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 120px 7% 90px;
+        }
+
+        .hero-content {
+
+            max-width: 760px;
+
+            color: white;
+        }
+
+        .location-badge {
+
+            display: inline-block;
+
+            padding: 9px 17px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(
+                    112,
+                    205,
+                    74,
+                    0.95
+                );
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+
+            font-size:
+                clamp(
+                    48px,
+                    7vw,
+                    82px
+                );
+
+            line-height: 1;
+
+            margin-bottom: 20px;
+
+            font-weight: 900;
+
+            letter-spacing: -2px;
+        }
+
+        .hero-description {
+
+            font-size: 19px;
+
+            max-width: 680px;
+
+            color: #e7eee9;
+
+            margin-bottom: 28px;
+        }
+
+        .rating {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 18px;
+
+            font-weight: 700;
+        }
+
+        .stars {
+
+            color: #ffd447;
+
+            font-size: 23px;
+        }
+
+        .rating-text {
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           MAIN AREA
+        ========================== */
+
+        .main-container {
+
+            max-width: 1280px;
+
+            margin: -70px auto 80px;
+
+            position: relative;
+
+            z-index: 10;
+
+            padding: 0 25px;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                350px;
+
+            gap: 28px;
+        }
+
+
+        /* =========================
+           CONTENT CARDS
+        ========================== */
+
+        .content-card {
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.94
+                );
+
+            border-radius: 24px;
+
+            padding: 34px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(
+                    20,
+                    45,
+                    34,
+                    0.12
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.8
+                );
+        }
+
+        .section-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 25px;
+
+            color: #153c2c;
+
+            margin-bottom: 18px;
+        }
+
+        .section-icon {
+
+            width: 43px;
+
+            height: 43px;
+
+            border-radius: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #e1f3d8;
+
+            color: #3e8d2e;
+
+            font-size: 21px;
+        }
+
+        .about-text {
+
+            color: #5e6c65;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =========================
+           HIGHLIGHTS
+        ========================== */
+
+        .highlights {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .highlight {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f5f8f2,
+                    #e8f2e2
+                );
+
+            border-radius: 18px;
+
+            padding: 22px 15px;
+
+            text-align: center;
+
+            border:
+                1px solid
+                #d9e8d3;
+
+            transition: 0.3s;
+        }
+
+        .highlight:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(
+                    48,
+                    105,
+                    41,
+                    0.12
+                );
+        }
+
+        .highlight-icon {
+
+            font-size: 28px;
+
+            margin-bottom: 8px;
+        }
+
+        .highlight-label {
+
+            font-size: 12px;
+
+            color: #78847d;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+
+            margin-bottom: 4px;
+        }
+
+        .highlight-value {
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            color: #183e2d;
+        }
+
+
+        /* =========================
+           TWO COLUMN CARDS
+        ========================== */
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 25px;
+        }
+
+        .info-card {
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.94
+                );
+
+            border-radius: 24px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(
+                    20,
+                    45,
+                    34,
+                    0.10
+                );
+        }
+
+        .info-card h2 {
+
+            color: #173e2d;
+
+            font-size: 23px;
+
+            margin-bottom: 22px;
+        }
+
+
+        /* =========================
+           SAFETY
+        ========================== */
+
+        .safety-list {
+
+            list-style: none;
+        }
+
+        .safety-list li {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 10px 0;
+
+            color: #5d6b63;
+
+            font-size: 15px;
+        }
+
+        .check {
+
+            width: 25px;
+
+            height: 25px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #dcf2d5;
+
+            color: #429c2f;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           GEAR
+        ========================== */
+
+        .gear-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 14px;
+        }
+
+        .gear-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            background: #f5f7f2;
+
+            padding: 13px;
+
+            border-radius: 13px;
+
+            font-size: 14px;
+
+            color: #506058;
+        }
+
+        .gear-icon {
+            font-size: 19px;
+        }
+
+
+        /* =========================
+           MENTOR
+        ========================== */
+
+        .mentor-card {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #123d2b,
+                    #245c3c
+                );
+
+            color: white;
+
+            border-radius: 24px;
+
+            padding: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            box-shadow:
+                0 18px 40px
+                rgba(
+                    14,
+                    58,
+                    37,
+                    0.22
+                );
+        }
+
+        .mentor-avatar {
+
+            width: 65px;
+
+            height: 65px;
+
+            border-radius: 50%;
+
+            background: #e0f3d7;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 30px;
+        }
+
+        .mentor-info h3 {
+
+            font-size: 20px;
+
+            margin-bottom: 4px;
+        }
+
+        .mentor-info p {
+
+            color: #c9ddcf;
+
+            font-size: 14px;
+        }
+
+        .verified {
+
+            display: inline-block;
+
+            margin-top: 8px;
+
+            padding: 5px 11px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(
+                    142,
+                    224,
+                    107,
+                    0.18
+                );
+
+            color: #a9ef8b;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           BOOKING CARD
+        ========================== */
+
+        .booking-wrapper {
+
+            position: sticky;
+
+            top: 25px;
+        }
+
+        .booking-card {
+
+            background:
+                linear-gradient(
+                    160deg,
+                    #123a29,
+                    #0a261c
+                );
+
+            color: white;
+
+            border-radius: 28px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 25px 55px
+                rgba(
+                    6,
+                    35,
+                    23,
+                    0.28
+                );
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        .booking-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    116,
+                    195,
+                    73,
+                    0.13
+                );
+
+            top: -80px;
+
+            right: -60px;
+        }
+
+        .package-label {
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            color: #9dc6a8;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+        .price {
+
+            font-size: 42px;
+
+            font-weight: 900;
+
+            margin-bottom: 2px;
+
+            position: relative;
+        }
+
+        .per-person {
+
+            color: #aabeb2;
+
+            font-size: 13px;
+
+            margin-bottom: 28px;
+        }
+
+        .booking-details {
+
+            border-top:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.12
+                );
+
+            padding-top: 18px;
+        }
+
+        .booking-row {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
+            font-size: 14px;
+        }
+
+        .booking-row span:first-child {
+            color: #9eb1a5;
+        }
+
+        .booking-row strong {
+
+            color: white;
+
+            text-align: right;
+        }
+
+        .book-button {
+
+            display: block;
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 16px;
+
+            text-align: center;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #78c94e,
+                    #4c9f32
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 10px 25px
+                rgba(
+                    78,
+                    160,
+                    49,
+                    0.35
+                );
+
+            transition: 0.3s;
+        }
+
+        .book-button:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(
+                    78,
+                    160,
+                    49,
+                    0.45
+                );
+        }
+
+        .secure-text {
+
+            text-align: center;
+
+            margin-top: 14px;
+
+            font-size: 12px;
+
+            color: #93a99b;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        .footer {
+
+            background: #071f17;
+
+            color: #aabbb1;
+
+            padding: 45px 7%;
+
+            text-align: center;
+        }
+
+        .footer-logo {
+
+            color: white;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            margin-bottom: 8px;
+        }
+
+        .footer-logo span {
+            color: #83d45d;
+        }
+
+        .footer p {
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 1000px) {
+
+            .main-container {
+
+                grid-template-columns: 1fr;
+            }
+
+            .booking-wrapper {
+
+                position: relative;
+
+                top: 0;
+            }
+
+            .booking-card {
+
+                max-width: 600px;
+
+                margin: auto;
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .navbar {
+
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+
+                gap: 14px;
+            }
+
+            .nav-links a:not(.nav-book) {
+
+                display: none;
+            }
+
+            .hero {
+
+                min-height: 520px;
+
+                padding:
+                    120px 6% 80px;
+            }
+
+            .hero h1 {
+
+                font-size: 48px;
+            }
+
+            .hero-description {
+
+                font-size: 16px;
+            }
+
+            .main-container {
+
+                margin-top: -35px;
+
+                padding: 0 15px;
+            }
+
+            .content-card,
+            .info-card {
+
+                padding: 24px;
+            }
+
+            .highlights {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .logo {
+
+                font-size: 21px;
+            }
+
+            .nav-book {
+
+                padding:
+                    9px 15px;
+
+                font-size: 13px !important;
+            }
+
+            .hero h1 {
+
+                font-size: 40px;
+            }
+
+            .highlights {
+
+                grid-template-columns: 1fr;
+            }
+
+            .gear-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .mentor-card {
+
+                align-items:
+                    flex-start;
+            }
+
+        }
+    /* =========================
+   WEATHER & SAFETY ADVISOR
+========================== */
+
+.weather-card {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.94
+        );
+
+    border-radius: 24px;
+
+    padding: 34px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(
+            20,
+            45,
+            34,
+            0.12
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.8
+        );
+}
+
+
+.weather-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 22px;
+}
+
+
+.weather-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.weather-title-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #e1f3d8;
+
+    font-size: 21px;
+}
+
+
+.weather-title h2 {
+
+    color: #153c2c;
+
+    font-size: 25px;
+}
+
+
+.weather-title p {
+
+    color: #78847d;
+
+    font-size: 13px;
+
+    margin-top: 2px;
+}
+
+
+.weather-status {
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background: #e1f3d8;
+
+    color: #3e8d2e;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+.weather-metrics {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+
+.weather-metric {
+
+    background:
+        linear-gradient(
+            145deg,
+            #f5f8f2,
+            #e8f2e2
+        );
+
+    border-radius: 18px;
+
+    padding: 20px 15px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        #d9e8d3;
+}
+
+
+.weather-metric-icon {
+
+    font-size: 27px;
+
+    margin-bottom: 7px;
+}
+
+
+.weather-metric-label {
+
+    font-size: 11px;
+
+    color: #78847d;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+
+    margin-bottom: 4px;
+}
+
+
+.weather-metric-value {
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    color: #183e2d;
+}
+
+
+.weather-advice {
+
+    margin-top: 18px;
+
+    padding: 16px 18px;
+
+    border-radius: 15px;
+
+    background: #edf7e9;
+
+    border: 1px solid #d8ebd0;
+
+    color: #5d6b63;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+.weather-advice strong {
+
+    display: block;
+
+    color: #39842b;
+
+    margin-bottom: 3px;
+}
+
+@media (max-width: 750px) {
+
+    .weather-header {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+    }
+
+
+    .weather-metrics {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .weather-metrics {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<nav class="navbar">
+
+    <a
+        href="/"
+        class="logo"
+    >
+        TREK<span>ORA</span>
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/#explore">
+            Explore Treks
+        </a>
+
+        <a href="/#features">
+            Features
+        </a>
+
+        <a href="/#about">
+            About
+        </a>
+
+        <a
+            href="/#explore"
+            class="nav-book"
+        >
+            Explore
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="location-badge">
+
+            📍 {{ trek.location }}
+
+        </div>
+
+
+        <h1>
+
+            {{ trek.name }}
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            {{ trek.short_description }}
+
+        </p>
+
+
+        <div class="rating">
+
+            <span class="stars">
+                ★
+            </span>
+
+            <span class="rating-text">
+                {{ trek.rating }}
+            </span>
+
+            <span class="rating-text">
+                Excellent Trek
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     MAIN CONTENT
+========================== -->
+
+<main class="main-container">
+
+
+    <!-- =========================
+         LEFT CONTENT
+    ========================== -->
+
+    <div class="left-content">
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section class="content-card">
+
+            <h2 class="section-title">
+
+                <span class="section-icon">
+                    🏔
+                </span>
+
+                About This Trek
+
+            </h2>
+
+
+            <p class="about-text">
+
+                {{ trek.description }}
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             HIGHLIGHTS
+        ========================== -->
+
+        <section class="content-card">
+
+            <h2 class="section-title">
+
+                <span class="section-icon">
+                    ⭐
+                </span>
+
+                Trek Highlights
+
+            </h2>
+
+
+            <div class="highlights">
+
+
+                <div class="highlight">
+
+                    <div class="highlight-icon">
+                        🥾
+                    </div>
+
+                    <div class="highlight-label">
+                        Difficulty
+                    </div>
+
+                    <div class="highlight-value">
+                        {{ trek.difficulty }}
+                    </div>
+
+                </div>
+
+
+                <div class="highlight">
+
+                    <div class="highlight-icon">
+                        ⏱
+                    </div>
+
+                    <div class="highlight-label">
+                        Duration
+                    </div>
+
+                    <div class="highlight-value">
+                        {{ trek.duration }}
+                    </div>
+
+                </div>
+
+
+                <div class="highlight">
+
+                    <div class="highlight-icon">
+                        📏
+                    </div>
+
+                    <div class="highlight-label">
+                        Distance
+                    </div>
+
+                    <div class="highlight-value">
+                        {{ trek.distance }}
+                    </div>
+
+                </div>
+
+
+                <div class="highlight">
+
+                    <div class="highlight-icon">
+                        ⛰
+                    </div>
+
+                    <div class="highlight-label">
+                        Elevation
+                    </div>
+
+                    <div class="highlight-value">
+                        {{ trek.elevation }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+<!-- =========================
+     WEATHER & SAFETY ADVISOR
+========================== -->
+
+<section class="weather-card">
+
+    <div class="weather-header">
+
+        <div class="weather-title">
+
+            <div class="weather-title-icon">
+                🌦️
+            </div>
+
+            <div>
+
+                <h2>
+                    Weather & Safety Advisor
+                </h2>
+
+                <p>
+                    Trek conditions and basic safety guidance.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="weather-status">
+            🟢 CONDITIONS LOOK SUITABLE
+        </div>
+
+    </div>
+
+
+    <div class="weather-metrics">
+
+
+        <div class="weather-metric">
+
+            <div class="weather-metric-icon">
+                🌡️
+            </div>
+
+            <div class="weather-metric-label">
+                Temperature
+            </div>
+
+            <div class="weather-metric-value">
+                22°C
+            </div>
+
+        </div>
+
+
+        <div class="weather-metric">
+
+            <div class="weather-metric-icon">
+                🌧️
+            </div>
+
+            <div class="weather-metric-label">
+                Rain Chance
+            </div>
+
+            <div class="weather-metric-value">
+                35%
+            </div>
+
+        </div>
+
+
+        <div class="weather-metric">
+
+            <div class="weather-metric-icon">
+                💨
+            </div>
+
+            <div class="weather-metric-label">
+                Wind Speed
+            </div>
+
+            <div class="weather-metric-value">
+                14 km/h
+            </div>
+
+        </div>
+
+
+        <div class="weather-metric">
+
+            <div class="weather-metric-icon">
+                👁️
+            </div>
+
+            <div class="weather-metric-label">
+                Visibility
+            </div>
+
+            <div class="weather-metric-value">
+                Good
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="weather-advice">
+
+        <strong>
+            Trek Advisory
+        </strong>
+
+        Conditions currently look suitable for trekking.
+        Carry sufficient water, comfortable trekking shoes
+        and light weather protection before starting your trek.
+
+    </div>
+
+</section>
+        <!-- =========================
+             SAFETY + GEAR
+        ========================== -->
+
+        <div class="info-grid">
+
+
+            <!-- =========================
+                 SAFETY
+            ========================== -->
+
+            <section class="info-card">
+
+                <h2>
+                    🛡 Safety Information
+                </h2>
+
+
+                <ul class="safety-list">
+
+                    <li>
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        Experienced trek mentor support
+
+                    </li>
+
+
+                    <li>
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        First-aid kit available
+
+                    </li>
+
+
+                    <li>
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        Emergency contact support
+
+                    </li>
+
+
+                    <li>
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        Weather monitoring
+
+                    </li>
+
+
+                    <li>
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        Group trekking system
+
+                    </li>
+
+
+                    <li>
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        Emergency evacuation assistance
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+
+            <!-- =========================
+                 GEAR
+            ========================== -->
+
+            <section class="info-card">
+
+                <h2>
+                    🎒 Recommended Gear
+                </h2>
+
+
+                <div class="gear-grid">
+
+
+                    <div class="gear-item">
+
+                        <span class="gear-icon">
+                            🎒
+                        </span>
+
+                        Backpack
+
+                    </div>
+
+
+                    <div class="gear-item">
+
+                        <span class="gear-icon">
+                            🥾
+                        </span>
+
+                        Trekking Shoes
+
+                    </div>
+
+
+                    <div class="gear-item">
+
+                        <span class="gear-icon">
+                            💧
+                        </span>
+
+                        Water Bottle
+
+                    </div>
+
+
+                    <div class="gear-item">
+
+                        <span class="gear-icon">
+                            🧥
+                        </span>
+
+                        Rain Jacket
+
+                    </div>
+
+
+                    <div class="gear-item">
+
+                        <span class="gear-icon">
+                            🔦
+                        </span>
+
+                        Torch
+
+                    </div>
+
+
+                    <div class="gear-item">
+
+                        <span class="gear-icon">
+                            🩹
+                        </span>
+
+                        First Aid
+
+                    </div>
+
+
+                    <div class="gear-item">
+
+                        <span class="gear-icon">
+                            🧢
+                        </span>
+
+                        Cap
+
+                    </div>
+
+
+                    <div class="gear-item">
+
+                        <span class="gear-icon">
+                            🥜
+                        </span>
+
+                        Energy Snacks
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =========================
+             MENTOR
+        ========================== -->
+
+        <section class="mentor-card">
+
+
+            <div class="mentor-avatar">
+                🧑‍🏫
+            </div>
+
+
+            <div class="mentor-info">
+
+                <h3>
+                    {{ trek.mentor }}
+                </h3>
+
+                <p>
+                    Experienced & Certified Trek Leader
+                </p>
+
+                <span class="verified">
+                    ✓ VERIFIED MENTOR
+                </span>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         RIGHT BOOKING CARD
+    ========================== -->
+
+    <aside class="booking-wrapper">
+
+
+        <div class="booking-card">
+
+
+            <div class="package-label">
+                TREK PACKAGE
+            </div>
+
+
+            <div class="price">
+
+                ₹{{ trek.price }}
+
+            </div>
+
+
+            <div class="per-person">
+
+                per person
+
+            </div>
+
+
+
+            <div class="booking-details">
+
+
+                <div class="booking-row">
+
+                    <span>
+                        📍 Location
+                    </span>
+
+                    <strong>
+                        {{ trek.location }}
+                    </strong>
+
+                </div>
+
+
+                <div class="booking-row">
+
+                    <span>
+                        🥾 Difficulty
+                    </span>
+
+                    <strong>
+                        {{ trek.difficulty }}
+                    </strong>
+
+                </div>
+
+
+                <div class="booking-row">
+
+                    <span>
+                        ⏱ Duration
+                    </span>
+
+                    <strong>
+                        {{ trek.duration }}
+                    </strong>
+
+                </div>
+
+
+                <div class="booking-row">
+
+                    <span>
+                        📏 Distance
+                    </span>
+
+                    <strong>
+                        {{ trek.distance }}
+                    </strong>
+
+                </div>
+
+
+                <div class="booking-row">
+
+                    <span>
+                        ⭐ Rating
+                    </span>
+
+                    <strong>
+                        {{ trek.rating }}
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 BOOK TREK BUTTON
+            ========================== -->
+
+            <a
+                href="{{ url_for(
+                    'booking_page',
+                    trek_name=trek.name
+                ) }}"
+                class="book-button"
+            >
+
+                📅 Book This Trek →
+
+            </a>
+
+
+            <div class="secure-text">
+
+                🔒 Secure booking
+                &nbsp;•&nbsp;
+                Easy cancellation
+
+            </div>
+
+
+        </div>
+
+    </aside>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+
+        TREK<span>ORA</span>
+
+    </div>
+
+
+    <p>
+
+        Explore nature.
+        Trek safely.
+        Create unforgettable memories.
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

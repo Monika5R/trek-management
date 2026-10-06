@@ -1,0 +1,1461 @@
+/* =========================================================
+   TREKORA BOOKING PAGE
+   booking.css
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family:
+        "Inter",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #f5f8f6;
+    color: #294238;
+    line-height: 1.6;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+    width: 100%;
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border-bottom: 1px solid #e4ebe7;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow: 0 3px 18px rgba(35, 65, 52, 0.05);
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+
+    color: #254b3d;
+}
+
+
+.logo-icon {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #e8f3ec;
+
+    font-size: 18px;
+}
+
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.nav-links a {
+    color: #64756d;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+}
+
+
+.nav-links a:hover {
+    color: #2f7656;
+}
+
+
+.nav-links .nav-book {
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    background: #356b53;
+    color: white;
+
+    box-shadow: 0 5px 14px rgba(53, 107, 83, 0.15);
+}
+
+
+.nav-links .nav-book:hover {
+    background: #285b44;
+    color: white;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.booking-hero {
+    min-height: 285px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    background:
+        linear-gradient(
+            rgba(35, 68, 55, 0.90),
+            rgba(35, 68, 55, 0.94)
+        ),
+        url("/static/images/background.png");
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+.hero-small {
+    margin-bottom: 12px;
+
+    color: #cfe5d8;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.booking-hero h1 {
+    margin-bottom: 10px;
+
+    color: white;
+
+    font-size: 40px;
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+}
+
+
+.booking-hero p {
+    max-width: 620px;
+
+    color: #dbe8e1;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.back-link {
+    max-width: 1180px;
+
+    margin: 28px auto 0;
+
+    padding: 0 25px;
+}
+
+
+.back-link a {
+    display: inline-flex;
+    align-items: center;
+
+    color: #47715e;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+}
+
+
+.back-link a:hover {
+    color: #244f3c;
+}
+
+
+/* =========================================================
+   MAIN WRAPPER
+   ========================================================= */
+
+.booking-wrapper {
+    max-width: 1180px;
+
+    margin: 22px auto 70px;
+
+    padding: 0 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(320px, 0.75fr);
+
+    gap: 28px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   BOOKING FORM CARD
+   ========================================================= */
+
+.booking-form-card {
+    background: white;
+
+    border: 1px solid #e1e9e5;
+
+    border-radius: 16px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 10px 35px rgba(39, 69, 56, 0.06);
+}
+
+
+.form-heading {
+    margin-bottom: 30px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid #edf1ef;
+}
+
+
+.form-heading h2 {
+    margin-bottom: 5px;
+
+    color: #294b3e;
+
+    font-size: 22px;
+    font-weight: 750;
+}
+
+
+.form-heading p {
+    color: #7b8b84;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+   ========================================================= */
+
+.section-title {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-top: 30px;
+    margin-bottom: 18px;
+}
+
+
+.section-title:first-of-type {
+    margin-top: 0;
+}
+
+
+.section-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #edf6f0;
+
+    font-size: 15px;
+}
+
+
+.section-title h3 {
+    color: #304c41;
+
+    font-size: 15px;
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 19px 18px;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+
+.form-group label,
+.payment-field label {
+    margin-bottom: 7px;
+
+    color: #435a50;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+.form-group input,
+.form-group select,
+.payment-field input,
+.payment-field select {
+    width: 100%;
+
+    min-height: 45px;
+
+    padding: 0 13px;
+
+    border: 1px solid #dbe5df;
+
+    border-radius: 8px;
+
+    background: #fbfcfb;
+
+    color: #30483e;
+
+    outline: none;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.form-group input::placeholder,
+.payment-field input::placeholder {
+    color: #a2ada8;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.payment-field input:focus,
+.payment-field select:focus {
+    background: white;
+
+    border-color: #75a98e;
+
+    box-shadow:
+        0 0 0 3px rgba(76, 137, 103, 0.10);
+}
+
+
+.help-text {
+    margin-top: 5px;
+
+    color: #99a49f;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+.phone-box {
+    display: flex;
+
+    width: 100%;
+}
+
+
+.country-code {
+    min-height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 12px;
+
+    border: 1px solid #dbe5df;
+
+    border-right: none;
+
+    border-radius: 8px 0 0 8px;
+
+    background: #f1f6f3;
+
+    color: #64776e;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+.phone-box input {
+    border-radius: 0 8px 8px 0;
+}
+
+
+/* =========================================================
+   PAYMENT SECTION
+   ========================================================= */
+
+.payment-subtitle {
+    margin-top: -7px;
+    margin-bottom: 16px;
+
+    color: #87948e;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PAYMENT OPTIONS
+   ========================================================= */
+
+.payment-options {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+
+.payment-option {
+    position: relative;
+
+    display: block;
+
+    cursor: pointer;
+}
+
+
+.payment-option input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.payment-option-content {
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    border: 1px solid #dfe8e3;
+
+    border-radius: 10px;
+
+    background: #fbfcfb;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.payment-option:hover .payment-option-content {
+    border-color: #a8c7b5;
+
+    background: #f7fbf8;
+}
+
+
+.payment-option input:checked
++ .payment-option-content {
+    border-color: #4d8a68;
+
+    background: #eef7f1;
+
+    box-shadow:
+        0 0 0 2px rgba(77, 138, 104, 0.08);
+}
+
+
+.payment-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #e8f2ec;
+
+    color: #3e7658;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+}
+
+
+.payment-option-content strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #344d42;
+
+    font-size: 12px;
+    font-weight: 750;
+}
+
+
+.payment-option-content span {
+    display: block;
+
+    color: #8b9892;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   PAYMENT PANELS
+   ========================================================= */
+
+.payment-panel {
+    display: none;
+
+    margin-top: 14px;
+
+    padding: 20px;
+
+    border: 1px solid #dbe7e0;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fbf9,
+            #f1f7f3
+        );
+}
+
+
+.payment-panel.show {
+    display: block;
+
+    animation: paymentPanelIn 0.22s ease;
+}
+
+
+@keyframes paymentPanelIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.payment-panel-title {
+    margin-bottom: 3px;
+
+    color: #315543;
+
+    font-size: 14px;
+    font-weight: 750;
+}
+
+
+.payment-panel-description {
+    margin-bottom: 17px;
+
+    color: #87958e;
+
+    font-size: 11px;
+}
+
+
+.payment-field {
+    margin-bottom: 14px;
+}
+
+
+.payment-field:last-child {
+    margin-bottom: 0;
+}
+
+
+.upi-example {
+    margin-top: 5px;
+
+    color: #94a19b;
+
+    font-size: 10px;
+}
+
+
+.upi-pay-box {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    margin-bottom: 14px;
+
+    padding: 12px;
+
+    border: 1px dashed #bfd4c7;
+
+    border-radius: 8px;
+
+    background: white;
+}
+
+
+.upi-pay-box strong {
+    color: #456355;
+
+    font-size: 11px;
+}
+
+
+.upi-pay-box span {
+    color: #89978f;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   CARD ROW
+   ========================================================= */
+
+.card-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   PAYMENT AMOUNT
+   ========================================================= */
+
+.payment-amount-box {
+    margin-top: 15px;
+
+    padding: 12px 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 8px;
+
+    background: white;
+
+    border: 1px solid #e0e9e4;
+}
+
+
+.payment-amount-box span {
+    color: #77867e;
+
+    font-size: 11px;
+}
+
+
+.payment-amount-box strong {
+    color: #315f49;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   PAYMENT NOTE
+   ========================================================= */
+
+.payment-note {
+    margin-top: 14px;
+
+    padding: 12px 14px;
+
+    border-left: 3px solid #72a789;
+
+    border-radius: 7px;
+
+    background: #f0f7f2;
+
+    color: #718078;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+.payment-note strong {
+    color: #456d57;
+}
+
+
+/* =========================================================
+   TERMS
+   ========================================================= */
+
+.terms {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin-top: 23px;
+
+    padding: 13px;
+
+    border-radius: 8px;
+
+    background: #f8faf9;
+
+    border: 1px solid #e8eeeb;
+}
+
+
+.terms input {
+    width: 15px;
+    height: 15px;
+
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+    accent-color: #3f7c5b;
+
+    cursor: pointer;
+}
+
+
+.terms label {
+    color: #788780;
+
+    font-size: 10px;
+
+    line-height: 1.55;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.submit-btn {
+    width: 100%;
+
+    min-height: 50px;
+
+    margin-top: 20px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #376f54,
+            #285d44
+        );
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 750;
+
+    letter-spacing: 0.1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(49, 103, 77, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.submit-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #2e654b,
+            #214f3a
+        );
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 11px 24px rgba(49, 103, 77, 0.23);
+}
+
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+
+.submit-btn:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   TREK SUMMARY CARD
+   ========================================================= */
+
+.summary-card {
+    position: sticky;
+    top: 95px;
+
+    overflow: hidden;
+
+    background: white;
+
+    border: 1px solid #e0e8e3;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 35px rgba(39, 69, 56, 0.07);
+}
+
+
+.summary-image {
+    width: 100%;
+    height: 220px;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.summary-content {
+    padding: 23px;
+}
+
+
+.summary-label {
+    margin-bottom: 5px;
+
+    color: #83a18f;
+
+    font-size: 10px;
+    font-weight: 750;
+
+    letter-spacing: 1.4px;
+
+    text-transform: uppercase;
+}
+
+
+.summary-content h2 {
+    margin-bottom: 4px;
+
+    color: #2f4d40;
+
+    font-size: 24px;
+    font-weight: 800;
+}
+
+
+.location {
+    margin-bottom: 20px;
+
+    color: #7d8c85;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SUMMARY DETAILS
+   ========================================================= */
+
+.summary-details {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+}
+
+
+.detail-box {
+    padding: 10px;
+
+    border: 1px solid #e8eeeb;
+
+    border-radius: 8px;
+
+    background: #fafcfb;
+}
+
+
+.detail-label {
+    margin-bottom: 2px;
+
+    color: #9aa59f;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.detail-value {
+    color: #4a6257;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PRICE BOX
+   ========================================================= */
+
+.price-box {
+    padding: 16px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff7f1,
+            #e8f2eb
+        );
+
+    border: 1px solid #d9e9de;
+
+    text-align: center;
+}
+
+
+.price-title {
+    margin-bottom: 2px;
+
+    color: #73877c;
+
+    font-size: 10px;
+}
+
+
+.price {
+    color: #2f674b;
+
+    font-size: 27px;
+    font-weight: 800;
+}
+
+
+.per-person {
+    color: #84938b;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   TOTAL BOX
+   ========================================================= */
+
+.total-box {
+    margin-top: 12px;
+
+    padding: 14px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-top: 1px solid #edf1ef;
+
+    border-bottom: 1px solid #edf1ef;
+}
+
+
+.total-box span:first-child {
+    color: #718078;
+
+    font-size: 11px;
+}
+
+
+.total-box span:last-child {
+    color: #2d5e47;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   SECURE NOTE
+   ========================================================= */
+
+.secure-note {
+    margin-top: 14px;
+
+    text-align: center;
+
+    color: #8b9892;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   INPUT VALIDATION
+   ========================================================= */
+
+.form-group input:invalid:not(:placeholder-shown) {
+    border-color: #dfb2b2;
+}
+
+
+.form-group input:valid:not(:placeholder-shown) {
+    border-color: #c9ddd0;
+}
+
+
+/* =========================================================
+   LOADING STATE
+   ========================================================= */
+
+.submit-btn.loading {
+    position: relative;
+
+    color: transparent;
+
+    pointer-events: none;
+}
+
+
+.submit-btn.loading::after {
+    content: "";
+
+    position: absolute;
+
+    width: 17px;
+    height: 17px;
+
+    top: 50%;
+    left: 50%;
+
+    margin-left: -8.5px;
+    margin-top: -8.5px;
+
+    border: 2px solid rgba(255, 255, 255, 0.4);
+
+    border-top-color: white;
+
+    border-radius: 50%;
+
+    animation: buttonSpin 0.7s linear infinite;
+}
+
+
+@keyframes buttonSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+/* =========================================================
+   SUBMIT BUTTON LOADING STATE
+   ========================================================= */
+
+.submit-loading {
+    display: none;
+}
+
+.submit-btn.loading {
+    cursor: not-allowed;
+    opacity: 0.75;
+    pointer-events: none;
+}
+
+.submit-btn.loading .submit-text {
+    display: none;
+}
+
+.submit-btn.loading .submit-loading {
+    display: inline;
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+
+    .nav-links {
+        gap: 17px;
+    }
+
+
+    .booking-wrapper {
+        grid-template-columns: 1fr;
+
+        max-width: 760px;
+    }
+
+
+    .summary-card {
+        position: relative;
+
+        top: auto;
+
+        order: -1;
+    }
+
+
+    .summary-image {
+        height: 260px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        min-height: 65px;
+
+        padding: 0 20px;
+    }
+
+
+    .nav-links a:not(.nav-book) {
+        display: none;
+    }
+
+
+    .nav-links {
+        gap: 0;
+    }
+
+
+    .nav-links .nav-book {
+        padding: 8px 13px;
+
+        font-size: 11px;
+    }
+
+
+    .logo {
+        font-size: 17px;
+    }
+
+
+    .logo-icon {
+        width: 31px;
+        height: 31px;
+    }
+
+
+    .booking-hero {
+        min-height: 235px;
+
+        padding: 40px 20px;
+    }
+
+
+    .booking-hero h1 {
+        font-size: 31px;
+    }
+
+
+    .booking-hero p {
+        font-size: 12px;
+    }
+
+
+    .back-link {
+        margin-top: 20px;
+
+        padding: 0 18px;
+    }
+
+
+    .booking-wrapper {
+        margin-top: 18px;
+
+        padding: 0 14px;
+
+        gap: 18px;
+    }
+
+
+    .booking-form-card {
+        padding: 22px 17px;
+
+        border-radius: 13px;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+
+
+    .card-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .summary-card {
+        border-radius: 13px;
+    }
+
+
+    .summary-image {
+        height: 210px;
+    }
+
+
+    .summary-content {
+        padding: 19px;
+    }
+
+
+    .summary-content h2 {
+        font-size: 21px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .booking-hero h1 {
+        font-size: 27px;
+    }
+
+
+    .hero-small {
+        font-size: 9px;
+    }
+
+
+    .booking-form-card {
+        padding: 19px 14px;
+    }
+
+
+    .section-title {
+        margin-top: 25px;
+    }
+
+
+    .section-title h3 {
+        font-size: 14px;
+    }
+
+
+    .payment-option-content {
+        min-height: 64px;
+
+        padding: 10px;
+    }
+
+
+    .payment-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .summary-image {
+        height: 185px;
+    }
+
+
+    .summary-details {
+        gap: 6px;
+    }
+
+
+    .detail-box {
+        padding: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #5d9574;
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+}

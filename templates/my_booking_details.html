@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Booking Details | Trekora
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+            color: #294238;
+
+            background:
+                linear-gradient(
+                    rgba(22, 62, 43, 0.38),
+                    rgba(22, 62, 43, 0.48)
+                ),
+                url("/static/images/background.png");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.96
+            );
+
+            box-shadow:
+                0 5px 25px
+                rgba(20, 60, 42, 0.12);
+
+        }
+
+
+        .logo {
+
+            text-decoration: none;
+
+            color: #294238;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+        }
+
+
+        .logo span {
+
+            color: #4c8f5c;
+
+        }
+
+
+        .nav-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+        }
+
+
+        .nav-btn {
+
+            text-decoration: none;
+
+            padding: 9px 15px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+
+        .profile-btn {
+
+            background: #edf5ef;
+
+            color: #355546;
+
+            border: 1px solid #d6e5d9;
+
+        }
+
+
+        .logout-btn {
+
+            background: #c65a5a;
+
+            color: white;
+
+        }
+
+
+        /* MAIN */
+
+        .page {
+
+            width: 90%;
+
+            max-width: 1050px;
+
+            margin: 45px auto 70px;
+
+        }
+
+
+        .page-header {
+
+            color: white;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .page-header h1 {
+
+            font-size: 32px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .page-header p {
+
+            font-size: 13px;
+
+            color: rgba(
+                255,
+                255,
+                255,
+                0.82
+            );
+
+        }
+
+
+        /* MAIN CARD */
+
+        .booking-card {
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.98
+            );
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 55px
+                rgba(15, 45, 31, 0.22);
+
+        }
+
+
+        /* TREK HEADER */
+
+        .trek-header {
+
+            padding: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #294238,
+                    #41694f
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+        }
+
+
+        .trek-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+        }
+
+
+        .trek-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,0.13);
+
+            font-size: 25px;
+
+        }
+
+
+        .trek-heading h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .booking-id {
+
+            font-size: 11px;
+
+            color:
+                rgba(255,255,255,0.72);
+
+        }
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 90px;
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-transform: capitalize;
+}
+
+/* Pending */
+
+.status-pending {
+    background: #fff7e6;
+    color: #9a6700;
+    border: 1px solid #f0d79b;
+}
+
+/* Confirmed */
+
+.status-confirmed {
+    background: #edf8f1;
+    color: #28704a;
+    border: 1px solid #cce5d5;
+}
+
+/* Cancelled */
+
+.status-cancelled {
+    background: #fff0f0;
+    color: #b42318;
+    border: 1px solid #f1c4c0;
+}
+
+        /* CONTENT */
+
+        .content {
+
+            padding: 25px;
+
+        }
+
+
+        .section {
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .section:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .section-title {
+
+            font-size: 16px;
+
+            color: #294238;
+
+            margin-bottom: 13px;
+
+            padding-bottom: 9px;
+
+            border-bottom: 1px solid #e3ebe5;
+
+        }
+
+
+        /* DETAILS GRID */
+
+        .details-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .detail-box {
+
+            padding: 15px;
+
+            border-radius: 11px;
+
+            background: #f7faf8;
+
+            border: 1px solid #e3ebe6;
+
+        }
+
+
+        .detail-label {
+
+            color: #8c9892;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .detail-value {
+
+            color: #355546;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            word-break: break-word;
+
+        }
+
+
+        /* PAYMENT */
+
+        .payment-box {
+
+            padding: 20px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef7f0,
+                    #f8faf8
+                );
+
+            border: 1px solid #dce8df;
+
+        }
+
+
+        .payment-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 9px 0;
+
+            border-bottom:
+                1px solid #dfe8e2;
+
+        }
+
+
+        .payment-row:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .payment-row span:first-child {
+
+            color: #87948d;
+
+            font-size: 12px;
+
+        }
+
+
+        .payment-row span:last-child {
+
+            color: #355546;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-align: right;
+
+        }
+
+
+        .total-row {
+
+            margin-top: 8px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid #ccdcd1;
+
+        }
+
+
+        .total-row span:last-child {
+
+            color: #294238;
+
+            font-size: 20px;
+
+        }
+
+
+        .paid {
+
+            color: #287346 !important;
+
+        }
+
+
+        .pending {
+
+            color: #89671e !important;
+
+        }
+
+
+        .refunded {
+
+            color: #6e5c9b !important;
+
+        }
+
+.payment-message {
+    margin-top: 12px;
+    padding: 11px 14px;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+/* Paid */
+
+.payment-success-message {
+    background: #edf8f1;
+    color: #28704a;
+    border: 1px solid #cce5d5;
+}
+
+/* Pending */
+
+.payment-pending-message {
+    background: #fff8e9;
+    color: #9a6700;
+    border: 1px solid #f0dba8;
+}
+
+/* Refunded */
+
+.payment-refunded-message {
+    background: #f3eff9;
+    color: #6b5590;
+    border: 1px solid #ddd2ec;
+}
+        /* ACTIONS */
+
+        .actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .action-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            padding: 11px 18px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+
+        .back-btn {
+
+            background: #294238;
+
+            color: white;
+
+        }
+
+
+        .home-btn {
+
+            background: #edf5ef;
+
+            color: #355546;
+
+            border: 1px solid #d6e5d9;
+
+        }
+
+        .receipt-btn {
+    background: linear-gradient(
+        135deg,
+        #315f47,
+        #4b7d61
+    );
+.pending-payment-btn {
+    background: #fff7e6;
+    color: #9a6700;
+    border: 1px solid #f0d79b;
+    cursor: default;
+}
+
+.refunded-btn {
+    background: #f1eef8;
+    color: #69528f;
+    border: 1px solid #d9cfea;
+    cursor: default;
+}
+    color: white;
+
+    border: 1px solid #315f47;
+
+    box-shadow:
+        0 5px 12px rgba(
+            49,
+            95,
+            71,
+            0.18
+        );
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.receipt-btn:hover {
+    background: linear-gradient(
+        135deg,
+        #284f3b,
+        #3f6d53
+    );
+
+    color: white;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(
+            49,
+            95,
+            71,
+            0.25
+        );
+}
+
+
+        /* FOOTER */
+
+        .footer {
+
+            text-align: center;
+
+            color: rgba(
+                255,
+                255,
+                255,
+                0.78
+            );
+
+            font-size: 11px;
+
+            margin-top: 25px;
+
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 750px) {
+
+            .details-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .trek-header {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            body {
+
+                background-attachment: scroll;
+
+            }
+
+
+            .navbar {
+
+                padding: 0 20px;
+
+            }
+
+
+            .profile-btn {
+
+                display: none;
+
+            }
+
+
+            .page {
+
+                width: 94%;
+
+                margin-top: 30px;
+
+            }
+
+
+            .page-header h1 {
+
+                font-size: 27px;
+
+            }
+
+
+            .content {
+
+                padding: 18px;
+
+            }
+
+
+            .trek-header {
+
+                padding: 20px;
+
+            }
+
+
+            .details-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .payment-row {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 4px;
+
+            }
+
+
+            .payment-row span:last-child {
+
+                text-align: left;
+
+            }
+
+
+            .actions {
+
+                flex-direction: column;
+
+            }
+
+
+            .action-btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+
+.cancel-btn {
+    border: 1px solid #e3bcbc;
+
+    background: #fff5f5;
+
+    color: #b84d4d;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+.cancel-btn:hover {
+    background: #c65a5a;
+
+    border-color: #c65a5a;
+
+    color: #ffffff;
+}
+
+.actions form {
+    margin: 0;
+}
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a
+            href="/"
+            class="logo"
+        >
+            Trek<span>ora</span>
+        </a>
+
+
+        <div class="nav-actions">
+
+            <a
+                href="/profile"
+                class="nav-btn profile-btn"
+            >
+                My Profile
+            </a>
+
+
+            <a
+                href="/logout"
+                class="nav-btn logout-btn"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- PAGE -->
+
+    <main class="page">
+
+
+        <div class="page-header">
+
+            <h1>
+                Booking Details
+            </h1>
+
+            <p>
+                View complete information about your Trekora adventure.
+            </p>
+
+        </div>
+
+
+
+        <div class="booking-card">
+
+
+            <!-- TREK HEADER -->
+
+            <div class="trek-header">
+
+
+                <div class="trek-heading">
+
+                    <div class="trek-icon">
+                        ⛰
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            {{ booking.trek_name }}
+                        </h2>
+
+
+                        <div class="booking-id">
+
+                            Booking ID:
+                            {{ booking.booking_id }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {% set booking_status =
+                    booking.status or "Pending"
+                %}
+
+
+                <div
+    class="
+        status
+        {% if booking_status|lower == 'confirmed' %}
+            status-confirmed
+        {% elif booking_status|lower == 'cancelled' %}
+            status-cancelled
+        {% else %}
+            status-pending
+        {% endif %}
+    "
+>
+    {{ booking_status }}
+</div>
+
+
+            </div>
+
+
+
+            <div class="content">
+
+
+                <!-- CUSTOMER -->
+
+                <section class="section">
+
+                    <h3 class="section-title">
+                        Customer Information
+                    </h3>
+
+
+                    <div class="details-grid">
+
+
+                        <div class="detail-box">
+
+                            <div class="detail-label">
+                                Name
+                            </div>
+
+                            <div class="detail-value">
+                                {{ booking.name }}
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <div class="detail-label">
+                                Email
+                            </div>
+
+                            <div class="detail-value">
+                                {{ booking.email }}
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <div class="detail-label">
+                                Phone
+                            </div>
+
+                            <div class="detail-value">
+                                {{ booking.phone }}
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- TREK -->
+
+                <section class="section">
+
+                    <h3 class="section-title">
+                        Trek Information
+                    </h3>
+
+
+                    <div class="details-grid">
+
+
+                        <div class="detail-box">
+
+                            <div class="detail-label">
+                                Trek Date
+                            </div>
+
+                            <div class="detail-value">
+                                {{ booking.trek_date }}
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <div class="detail-label">
+                                Travellers
+                            </div>
+
+                            <div class="detail-value">
+
+                                {{ booking.people }}
+
+                                {% if booking.people == 1 %}
+                                    Person
+                                {% else %}
+                                    People
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <div class="detail-label">
+                                Experience
+                            </div>
+
+                            <div class="detail-value">
+
+                                {{ booking.experience or "Not specified" }}
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    {% set payment_status =
+                        booking.payment_status or "Pending"
+                    %}
+
+                    {% if payment_status|lower == "paid" %}
+
+                        <div class="payment-message payment-success-message">
+                            Your payment has been successfully received.
+                        </div>
+
+                    {% elif payment_status|lower == "refunded" %}
+
+                        <div class="payment-message payment-refunded-message">
+                            Your payment has been refunded.
+                        </div>
+
+                    {% else %}
+
+                        <div class="payment-message payment-pending-message">
+                            Your payment is currently pending.
+                        </div>
+
+                    {% endif %}
+
+
+                </section>
+
+
+
+                <!-- EMERGENCY -->
+
+                <section class="section">
+
+                    <h3 class="section-title">
+                        Emergency Contact
+                    </h3>
+
+
+                    <div class="details-grid">
+
+
+                        <div class="detail-box">
+
+                            <div class="detail-label">
+                                Contact Name
+                            </div>
+
+                            <div class="detail-value">
+
+                                {{ booking.emergency_name or "Not provided" }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <div class="detail-label">
+                                Contact Phone
+                            </div>
+
+                            <div class="detail-value">
+
+                                {{ booking.emergency_phone or "Not provided" }}
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- PAYMENT -->
+
+                <section class="section">
+
+                    <h3 class="section-title">
+                        Payment Information
+                    </h3>
+
+
+                    <div class="payment-box">
+
+
+                        <div class="payment-row">
+
+                            <span>
+                                Payment Method
+                            </span>
+
+                            <span>
+                                {{ booking.payment_method or "Not Selected" }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="payment-row">
+
+                            <span>
+                                Payment Status
+                            </span>
+
+
+                            {% set payment_status =
+    booking.payment_status or "Pending"
+%}
+
+<span
+    class="
+        {% if payment_status|lower == 'paid' %}
+            paid
+        {% elif payment_status|lower == 'refunded' %}
+            refunded
+        {% else %}
+            pending
+        {% endif %}
+    "
+>
+    {{ payment_status }}
+</span>
+
+                        </div>
+
+
+                        <div class="payment-row">
+
+                            <span>
+                                Price Per Person
+                            </span>
+
+                            <span>
+                                ₹{{ "%.0f"|format(
+                                    booking.price_per_person|float
+                                ) }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="payment-row">
+
+                            <span>
+                                Number of Travellers
+                            </span>
+
+                            <span>
+                                {{ booking.people }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="payment-row">
+
+                            <span>
+                                Payment Date
+                            </span>
+
+                            <span>
+
+                                {% if booking.payment_date %}
+
+                                    {{ booking.payment_date.strftime(
+                                        '%d %b %Y, %I:%M %p'
+                                    ) }}
+
+                                {% else %}
+
+                                    Awaiting payment
+
+                                {% endif %}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="payment-row total-row">
+
+                            <span>
+                                Total Amount
+                            </span>
+
+                            <span>
+                                ₹{{ "%.0f"|format(
+                                    booking.total_amount|float
+                                ) }}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ACTIONS -->
+
+                <div class="actions">
+
+    <a
+        href="/profile"
+        class="action-btn back-btn"
+    >
+        ← Back to My Profile
+    </a>
+
+    {% set payment_status =
+    booking.payment_status or "Pending"
+%}
+
+{% if payment_status|lower == "paid" %}
+
+    <a
+        href="{{ url_for(
+            'download_my_booking_receipt',
+            booking_id=booking.booking_id
+        ) }}"
+        class="action-btn receipt-btn"
+    >
+        ↓ Download Receipt
+    </a>
+
+{% elif payment_status|lower == "refunded" %}
+
+    <span class="action-btn refunded-btn">
+        Payment Refunded
+    </span>
+
+{% else %}
+
+    <span class="action-btn pending-payment-btn">
+        Payment Pending
+    </span>
+
+{% endif %}
+
+    {% if booking.status|lower != "cancelled" %}
+
+    <form
+        action="{{ url_for(
+            'cancel_my_booking',
+            booking_id=booking.booking_id
+        ) }}"
+        method="POST"
+        onsubmit="return confirm(
+    'Are you sure you want to cancel this booking? Your payment will not be automatically refunded. Please contact Trekora for refund processing.'
+);"
+    >
+
+        <button
+            type="submit"
+            class="action-btn cancel-btn"
+        >
+            Cancel Booking
+        </button>
+
+    </form>
+
+    {% endif %}
+
+    <a
+        href="/"
+        class="action-btn home-btn"
+    >
+        Explore More Treks
+    </a>
+
+</div>
+            </div>
+
+        </div>
+
+
+
+        <div class="footer">
+
+            Trekora · Discover. Trek. Remember.
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Payment Details | Trekora</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='admin.css'
+        ) }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="mentor-form-page">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <div class="mentor-form-header">
+
+        <div>
+
+            <span class="section-label">
+                PAYMENT MANAGEMENT
+            </span>
+
+            <h1>
+                Payment Details
+            </h1>
+
+            <p>
+                View complete payment and booking information.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('admin_dashboard') }}#payments"
+            class="mentor-back-button"
+        >
+            ← Back to Payments
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PAYMENT SUMMARY
+         ===================================================== -->
+
+    <div class="payment-details-card">
+
+
+        <div class="payment-details-header">
+
+    <div class="payment-header-main">
+
+        <div class="payment-header-icon">
+            ₹
+        </div>
+
+        <div>
+            <span class="payment-details-label">
+                PAYMENT RECORD
+            </span>
+
+            <h2>
+                #{{ payment.booking_id }}
+            </h2>
+
+            <p>
+                Payment and booking information
+            </p>
+        </div>
+
+    </div>
+
+    <div class="payment-header-status">
+
+        <span class="payment-status-caption">
+            PAYMENT STATUS
+        </span>
+
+        {% set payment_status =
+            payment.payment_status or "Pending"
+        %}
+
+        {% if payment_status|lower == "paid" %}
+
+            <span class="payment-details-status paid">
+                Paid
+            </span>
+
+        {% elif payment_status|lower == "refunded" %}
+
+            <span class="payment-details-status refunded">
+                Refunded
+            </span>
+
+        {% else %}
+
+            <span class="payment-details-status pending">
+                Pending
+            </span>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+        <!-- =================================================
+             PAYMENT INFORMATION
+             ================================================= -->
+<div class="payment-details-section payment-summary-section">
+
+    <div class="payment-details-section-title">
+
+        <div>
+            <h3>
+                Payment Information
+            </h3>
+
+            <p>
+                Transaction-related information.
+            </p>
+        </div>
+
+        <div class="payment-summary-mini-status">
+
+            <span>
+                CURRENT STATUS
+            </span>
+
+            {% if payment_status|lower == "paid" %}
+
+                <strong class="summary-status-paid">
+                    Paid
+                </strong>
+
+            {% elif payment_status|lower == "refunded" %}
+
+                <strong class="summary-status-refunded">
+                    Refunded
+                </strong>
+
+            {% else %}
+
+                <strong class="summary-status-pending">
+                    Pending
+                </strong>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="payment-details-grid">
+
+
+                <!-- AMOUNT -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong class="payment-detail-amount">
+
+                        ₹{{ "%.2f"|format(
+                            payment.total_amount or 0
+                        ) }}
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- PRICE PER PERSON -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Price Per Person
+                    </span>
+
+                    <strong>
+
+                        ₹{{ "%.2f"|format(
+                            payment.price_per_person or 0
+                        ) }}
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- PAYMENT METHOD -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Payment Method
+                    </span>
+
+                    <strong>
+
+                        {{ payment.payment_method
+                           or "Not Selected" }}
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- PAYMENT DATE -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Payment Date
+                    </span>
+
+                    <strong>
+
+                        {% if payment.payment_date %}
+
+                            {{ payment.payment_date }}
+
+                        {% else %}
+
+                            Not Available
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CUSTOMER INFORMATION
+             ================================================= -->
+
+        <div class="payment-details-section">
+
+            <div class="payment-details-section-title">
+
+                <h3>
+                    Customer Information
+                </h3>
+
+                <p>
+                    Registered booking customer details.
+                </p>
+
+            </div>
+
+
+            <div class="payment-details-grid">
+
+
+                <!-- CUSTOMER NAME -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Customer Name
+                    </span>
+
+                    <strong>
+                        {{ payment.name }}
+                    </strong>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Email Address
+                    </span>
+
+                    <strong>
+                        {{ payment.email }}
+                    </strong>
+
+                </div>
+
+
+
+                <!-- PHONE -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Phone Number
+                    </span>
+
+                    <strong>
+                        {{ payment.phone }}
+                    </strong>
+
+                </div>
+
+
+
+                <!-- USER ID -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        User ID
+                    </span>
+
+                    <strong>
+
+                        {% if payment.user_id %}
+
+                            #{{ payment.user_id }}
+
+                        {% else %}
+
+                            Guest / Legacy Booking
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TREK INFORMATION
+             ================================================= -->
+
+        <div class="payment-details-section">
+
+            <div class="payment-details-section-title">
+
+                <h3>
+                    Trek Information
+                </h3>
+
+                <p>
+                    Trek details associated with this payment.
+                </p>
+
+            </div>
+
+
+            <div class="payment-details-grid">
+
+
+                <!-- TREK -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Trek Name
+                    </span>
+
+                    <strong>
+                        {{ payment.trek_name }}
+                    </strong>
+
+                </div>
+
+
+
+                <!-- TREK DATE -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Trek Date
+                    </span>
+
+                    <strong>
+
+                        {% if payment.trek_date %}
+
+                            {{ payment.trek_date.strftime(
+                                '%d %B %Y'
+                            ) }}
+
+                        {% else %}
+
+                            Not Available
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- PEOPLE -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Number of People
+                    </span>
+
+                    <strong>
+                        {{ payment.people }}
+                    </strong>
+
+                </div>
+
+
+
+                <!-- EXPERIENCE -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Experience Level
+                    </span>
+
+                    <strong>
+
+                        {{ payment.experience
+                           or "Not Specified" }}
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             BOOKING STATUS
+             ================================================= -->
+
+        <div class="payment-details-section">
+
+            <div class="payment-details-section-title">
+
+                <h3>
+                    Booking Status
+                </h3>
+
+                <p>
+                    Current status of the associated booking.
+                </p>
+
+            </div>
+
+
+            <div class="payment-details-status-row">
+
+
+                {% set booking_status =
+                    payment.status or "Pending"
+                %}
+
+
+                <div class="payment-status-detail">
+
+
+                    <span>
+                        Booking Status
+                    </span>
+
+
+                    {% if booking_status|lower == "confirmed" %}
+
+                        <strong class="booking-status-confirmed">
+                            Confirmed
+                        </strong>
+
+                    {% elif booking_status|lower == "cancelled" %}
+
+                        <strong class="booking-status-cancelled">
+                            Cancelled
+                        </strong>
+
+                    {% else %}
+
+                        <strong class="booking-status-pending">
+                            Pending
+                        </strong>
+
+                    {% endif %}
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             EMERGENCY CONTACT
+             ================================================= -->
+
+        <div class="payment-details-section">
+
+            <div class="payment-details-section-title">
+
+                <h3>
+                    Emergency Contact
+                </h3>
+
+                <p>
+                    Emergency contact information provided during booking.
+                </p>
+
+            </div>
+
+
+            <div class="payment-details-grid">
+
+
+                <!-- EMERGENCY NAME -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Emergency Contact
+                    </span>
+
+                    <strong>
+
+                        {{ payment.emergency_name
+                           or "Not Provided" }}
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- EMERGENCY PHONE -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Emergency Phone
+                    </span>
+
+                    <strong>
+
+                        {{ payment.emergency_phone
+                           or "Not Provided" }}
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- BOOKING CREATED -->
+
+                <div class="payment-detail-item">
+
+                    <span>
+                        Booking Created
+                    </span>
+
+                    <strong>
+
+                        {% if payment.created_at %}
+
+                            {{ payment.created_at.strftime(
+                                '%d %B %Y, %I:%M %p'
+                            ) }}
+
+                        {% else %}
+
+                            Not Available
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ACTIONS
+             ================================================= -->
+
+        <div class="payment-details-actions">
+
+<a
+    href="{{ url_for(
+        'download_payment_receipt',
+        booking_id=payment.booking_id
+    ) }}"
+    class="payment-details-receipt-button"
+>
+    Download Receipt
+</a>
+            <a
+                href="{{ url_for(
+                    'admin_booking_details',
+                    booking_id=payment.booking_id
+                ) }}"
+                class="payment-details-secondary-button"
+            >
+                View Booking
+            </a>
+
+
+            {% if payment_status|lower == "pending"
+                  and booking_status|lower != "cancelled" %}
+
+
+                <form
+                    action="{{ url_for(
+                        'mark_payment_paid',
+                        booking_id=payment.booking_id
+                    ) }}"
+                    method="POST"
+                    onsubmit="return confirm(
+                        'Mark this payment as Paid?'
+                    );"
+                >
+
+                    <button
+                        type="submit"
+                        class="payment-details-paid-button"
+                    >
+                        Mark Paid
+                    </button>
+
+                </form>
+
+
+            {% elif payment_status|lower == "paid" %}
+
+
+                <form
+                    action="{{ url_for(
+                        'mark_payment_refunded',
+                        booking_id=payment.booking_id
+                    ) }}"
+                    method="POST"
+                    onsubmit="return confirm(
+                        'Mark this payment as Refunded?'
+                    );"
+                >
+
+                    <button
+                        type="submit"
+                        class="payment-details-refund-button"
+                    >
+                        Refund Payment
+                    </button>
+
+                </form>
+
+
+            {% elif payment_status|lower == "refunded" %}
+
+
+                <span class="payment-details-completed">
+                    Payment Refunded
+                </span>
+
+
+            {% elif booking_status|lower == "cancelled" %}
+
+
+                <span class="payment-details-cancelled">
+                    Booking Cancelled
+                </span>
+
+
+            {% endif %}
+
+
+            <a
+                href="{{ url_for('admin_dashboard') }}#payments"
+                class="payment-details-secondary-button"
+            >
+                Back to Payments
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

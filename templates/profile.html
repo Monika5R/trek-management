@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Profile | Trekora</title>
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #263f34;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(18, 55, 39, 0.28),
+                    rgba(20, 58, 42, 0.34)
+                ),
+                url("/static/images/background.png");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            border-bottom: 1px solid #dce7df;
+
+            box-shadow:
+                0 5px 25px rgba(20, 60, 42, 0.10);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .logo {
+            color: #294238;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+
+            text-decoration: none;
+        }
+
+
+        .logo span {
+            color: #4c8f5c;
+        }
+
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .home-btn,
+        .logout-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 17px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.2s ease;
+        }
+
+
+        .home-btn {
+            color: #365546;
+
+            background: #edf5ef;
+
+            border: 1px solid #d5e5d8;
+        }
+
+
+        .home-btn:hover {
+            background: #dfeee2;
+        }
+
+
+        .logout-btn {
+            color: #ffffff;
+
+            background: #c65a5a;
+
+            border: 1px solid #c65a5a;
+        }
+
+
+        .logout-btn:hover {
+            background: #ae4545;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .profile-hero {
+            min-height: 300px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 55px 6%;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(18, 55, 39, 0.92),
+                    rgba(25, 69, 49, 0.76),
+                    rgba(25, 69, 49, 0.25)
+                );
+        }
+
+
+        .profile-hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 400px;
+            height: 400px;
+
+            right: -100px;
+            top: -170px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+        }
+
+
+        .hero-content {
+            max-width: 850px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .hero-tag {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 7px 13px;
+
+            margin-bottom: 17px;
+
+            border-radius: 30px;
+
+            color: #e6f4e8;
+
+            background: rgba(255, 255, 255, 0.12);
+
+            border: 1px solid rgba(255, 255, 255, 0.20);
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.4px;
+        }
+
+
+        .hero-content h1 {
+            color: #ffffff;
+
+            font-size: 42px;
+
+            line-height: 1.15;
+
+            margin-bottom: 12px;
+
+            letter-spacing: -1px;
+        }
+
+
+        .hero-content h1 span {
+            color: #a8d8ad;
+        }
+
+
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.83);
+
+            max-width: 620px;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           MAIN CONTAINER
+        ========================================= */
+
+        .page-container {
+            width: 90%;
+
+            max-width: 1200px;
+
+            margin: -45px auto 0;
+
+            position: relative;
+
+            z-index: 10;
+
+            padding-bottom: 70px;
+        }
+
+
+        /* =========================================
+           PROFILE CARD
+        ========================================= */
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.97);
+
+            border: 1px solid rgba(255, 255, 255, 0.90);
+
+            border-radius: 20px;
+
+            padding: 27px 30px;
+
+            box-shadow:
+                0 18px 50px rgba(20, 54, 39, 0.18);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .profile-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            min-width: 0;
+        }
+
+
+        .profile-avatar {
+            width: 78px;
+            height: 78px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #477e5a,
+                    #294238
+                );
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 20px rgba(41, 66, 56, 0.22);
+        }
+
+
+        .profile-info h2 {
+            font-size: 22px;
+
+            color: #294238;
+
+            margin-bottom: 6px;
+        }
+
+
+        .profile-info p {
+            color: #7a8981;
+
+            font-size: 13px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .profile-meta {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+        }
+
+
+        .meta-pill {
+            padding: 6px 10px;
+
+            border-radius: 7px;
+
+            background: #edf6ef;
+
+            color: #4b7357;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        .profile-action {
+            flex-shrink: 0;
+        }
+
+
+        .profile-action a {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 11px 17px;
+
+            background: #294238;
+
+            color: #ffffff;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.2s ease;
+        }
+
+
+        .profile-action a:hover {
+            background: #3e644e;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================================
+           STATISTICS
+        ========================================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.96);
+
+            border-radius: 16px;
+
+            padding: 21px;
+
+            border: 1px solid #e2ebe5;
+
+            box-shadow:
+                0 10px 30px rgba(20, 54, 39, 0.10);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .stat-card::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 4px;
+            height: 100%;
+
+            background: #4c8f5c;
+        }
+
+
+        .stat-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #edf6ef;
+
+            color: #4c8f5c;
+
+            margin-bottom: 13px;
+
+            font-size: 18px;
+
+            font-weight: 700;
+        }
+
+
+        .stat-label {
+            color: #87938d;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .stat-value {
+            color: #294238;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            margin-bottom: 4px;
+        }
+
+
+        .stat-description {
+            color: #9aa49f;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================
+           SECTION HEADER
+        ========================================= */
+
+        .section-header {
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            margin-bottom: 17px;
+        }
+
+
+        .section-title-area h2 {
+            color: #ffffff;
+
+            font-size: 25px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .section-title-area p {
+            color: rgba(255, 255, 255, 0.82);
+
+            font-size: 13px;
+        }
+
+
+        .booking-count {
+            color: #31513f;
+
+            background: rgba(255, 255, 255, 0.94);
+
+            padding: 8px 12px;
+
+            border-radius: 8px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           BOOKINGS
+        ========================================= */
+
+        .bookings-container {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+
+        .booking-card {
+            background: rgba(255, 255, 255, 0.98);
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            border: 1px solid #e1eae4;
+
+            box-shadow:
+                0 14px 40px rgba(20, 54, 39, 0.14);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .booking-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 18px 45px rgba(20, 54, 39, 0.18);
+        }
+
+
+        /* =========================================
+           BOOKING HEADER
+        ========================================= */
+
+        .booking-header {
+            padding: 20px 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f6faf7,
+                    #edf5ef
+                );
+
+            border-bottom: 1px solid #e0e9e3;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 18px;
+        }
+
+
+        .trek-title-area {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            min-width: 0;
+        }
+
+
+        .trek-icon {
+            width: 50px;
+            height: 50px;
+
+            flex-shrink: 0;
+
+            border-radius: 13px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #294238;
+
+            color: #ffffff;
+
+            font-size: 21px;
+        }
+
+
+        .trek-title {
+            color: #294238;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+
+        .booking-id {
+            color: #8b9791;
+
+            font-size: 11px;
+
+            font-weight: 500;
+        }
+
+
+        .status-badges {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: flex-end;
+
+            gap: 7px;
+        }
+
+
+        .badge {
+            padding: 7px 10px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+
+        .booking-status {
+            color: #8b641b;
+
+            background: #fff5d9;
+        }
+
+
+        .booking-status.confirmed {
+            color: #287346;
+
+            background: #e5f6e9;
+        }
+
+
+        .booking-status.cancelled {
+            color: #a83f3f;
+
+            background: #fdeaea;
+        }
+
+
+        .payment-status {
+            color: #8a681e;
+
+            background: #fff4d7;
+        }
+
+
+        .payment-status.paid {
+            color: #267045;
+
+            background: #e3f5e8;
+        }
+
+
+        .payment-status.refunded {
+            color: #6d5c9b;
+
+            background: #eeeafd;
+        }
+
+
+        .payment-status.pending {
+            color: #8a681e;
+
+            background: #fff4d7;
+        }
+
+
+        /* =========================================
+           BOOKING BODY
+        ========================================= */
+
+        .booking-body {
+            padding: 22px;
+        }
+
+
+        .booking-info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .info-box {
+            padding: 15px;
+
+            border-radius: 11px;
+
+            background: #f8faf9;
+
+            border: 1px solid #e5ece7;
+        }
+
+
+        .info-label {
+            color: #929d97;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .info-value {
+            color: #344d40;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           PAYMENT SUMMARY
+        ========================================= */
+
+        .payment-summary {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 17px 18px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f2f8f3,
+                    #f8faf8
+                );
+
+            border: 1px solid #dce8df;
+        }
+
+
+        .payment-left {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .payment-label {
+            color: #8b9690;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+        }
+
+
+        .payment-method {
+            color: #355546;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .payment-date {
+            color: #89958f;
+
+            font-size: 11px;
+        }
+
+
+        .amount-area {
+            text-align: right;
+        }
+
+
+        .amount-label {
+            color: #8b9690;
+
+            font-size: 10px;
+
+            display: block;
+
+            margin-bottom: 4px;
+
+            text-transform: uppercase;
+        }
+
+
+        .amount {
+            color: #294238;
+
+            font-size: 23px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
+        .empty-state {
+            background: rgba(255, 255, 255, 0.97);
+
+            border-radius: 18px;
+
+            padding: 55px 25px;
+
+            text-align: center;
+
+            border: 1px solid #e1eae4;
+
+            box-shadow:
+                0 14px 40px rgba(20, 54, 39, 0.13);
+        }
+
+
+        .empty-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 16px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #edf6ef;
+
+            color: #4c8f5c;
+
+            font-size: 27px;
+        }
+
+
+        .empty-state h3 {
+            color: #294238;
+
+            font-size: 19px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .empty-state p {
+            color: #8a9690;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .explore-btn {
+            display: inline-flex;
+
+            padding: 11px 18px;
+
+            background: #294238;
+
+            color: #ffffff;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition: 0.2s ease;
+        }
+
+
+        .explore-btn:hover {
+            background: #426650;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .page-footer {
+            margin-top: 30px;
+
+            text-align: center;
+
+            color: rgba(255, 255, 255, 0.78);
+
+            font-size: 11px;
+
+            padding-bottom: 25px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 950px) {
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .booking-info-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+
+            .profile-hero {
+                min-height: 270px;
+
+                padding: 45px 7%;
+            }
+
+
+            .hero-content h1 {
+                font-size: 33px;
+            }
+
+
+            .page-container {
+                width: 92%;
+
+                margin-top: -35px;
+            }
+
+
+            .profile-card {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                padding: 23px;
+            }
+
+
+            .profile-action {
+                width: 100%;
+            }
+
+
+            .profile-action a {
+                width: 100%;
+            }
+
+
+            .booking-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .status-badges {
+                justify-content: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            body {
+                background-attachment: scroll;
+            }
+
+
+            .logo {
+                font-size: 22px;
+            }
+
+
+            .home-btn {
+                display: none;
+            }
+
+
+            .profile-hero {
+                padding: 38px 6% 70px;
+            }
+
+
+            .hero-content h1 {
+                font-size: 29px;
+            }
+
+
+            .hero-content p {
+                font-size: 13px;
+            }
+
+
+            .page-container {
+                width: 94%;
+
+                margin-top: -35px;
+            }
+
+
+            .profile-left {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .profile-avatar {
+                width: 65px;
+                height: 65px;
+
+                font-size: 23px;
+            }
+
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+
+                gap: 10px;
+            }
+
+
+            .stat-card {
+                padding: 16px;
+            }
+
+
+            .stat-value {
+                font-size: 21px;
+            }
+
+
+            .section-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 10px;
+            }
+
+
+            .section-title-area h2 {
+                font-size: 22px;
+            }
+
+
+            .booking-info-grid {
+                grid-template-columns: 1fr 1fr;
+
+                gap: 8px;
+            }
+
+
+            .booking-body {
+                padding: 16px;
+            }
+
+
+            .booking-header {
+                padding: 17px;
+            }
+
+
+            .payment-summary {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .amount-area {
+                width: 100%;
+
+                text-align: left;
+
+                padding-top: 11px;
+
+                border-top: 1px solid #dfe8e2;
+            }
+
+        }
+
+
+        @media (max-width: 380px) {
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .booking-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .profile-card {
+                padding: 19px;
+            }
+
+
+            .trek-title {
+                font-size: 16px;
+            }
+
+        }
+
+        /* =========================================
+   VIEW BOOKING BUTTON
+========================================= */
+
+.booking-actions {
+    padding: 0 22px 22px;
+
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+
+.view-booking-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 16px;
+
+    background: #294238;
+
+    color: #ffffff;
+
+    border: 1px solid #294238;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+
+.view-booking-btn:hover {
+    background: #426650;
+
+    border-color: #426650;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px
+        rgba(41, 66, 56, 0.18);
+}
+
+
+@media (max-width: 520px) {
+
+    .booking-actions {
+        padding: 0 16px 17px;
+
+        justify-content: stretch;
+    }
+
+    .view-booking-btn {
+        width: 100%;
+    }
+
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            Trek<span>ora</span>
+        </a>
+
+
+        <div class="nav-right">
+
+            <a href="/" class="home-btn">
+                ← Explore Treks
+            </a>
+
+            <a href="/logout" class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         HERO
+    ========================================= -->
+
+    <section class="profile-hero">
+
+        <div class="hero-content">
+
+            <div class="hero-tag">
+                ● Trekora Member
+            </div>
+
+
+            <h1>
+                Welcome back,
+                <span>{{ user.name }}</span>
+            </h1>
+
+
+            <p>
+                Manage your Trekora profile, track your
+                trekking bookings, and keep an eye on
+                your upcoming adventures.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================= -->
+
+    <main class="page-container">
+
+
+        <!-- =====================================
+             PROFILE CARD
+        ===================================== -->
+
+        <section class="profile-card">
+
+            <div class="profile-left">
+
+                <div class="profile-avatar">
+
+                    {{ user.name[0]|upper }}
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <h2>
+                        {{ user.name }}
+                    </h2>
+
+
+                    <p>
+                        {{ user.email }}
+                    </p>
+
+
+                    <div class="profile-meta">
+
+                        {% if user.phone %}
+
+                        <span class="meta-pill">
+                            {{ user.phone }}
+                        </span>
+
+                        {% endif %}
+
+
+                        <span class="meta-pill">
+                            Trekora Member
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-action">
+
+                <a href="/">
+                    Explore New Treks
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             STATISTICS
+        ===================================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⛰
+                </div>
+
+                <div class="stat-label">
+                    Total Bookings
+                </div>
+
+                <div class="stat-value">
+                    {{ bookings|length }}
+                </div>
+
+                <div class="stat-description">
+                    Adventures booked
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div class="stat-label">
+                    Confirmed
+                </div>
+
+                <div class="stat-value">
+
+                    {{ bookings
+                        |selectattr("status", "equalto", "Confirmed")
+                        |list
+                        |length
+                    }}
+
+                </div>
+
+                <div class="stat-description">
+                    Confirmed adventures
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ₹
+                </div>
+
+                <div class="stat-label">
+                    Total Spent
+                </div>
+
+                <div class="stat-value">
+
+                    ₹{{ "%.0f"|format(
+                        bookings
+                        |map(attribute="total_amount")
+                        |map("float")
+                        |sum
+                    ) }}
+
+                </div>
+
+                <div class="stat-description">
+                    Booking value
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ●
+                </div>
+
+                <div class="stat-label">
+                    Paid
+                </div>
+
+                <div class="stat-value">
+
+                    {{ bookings
+                        |selectattr("payment_status", "equalto", "Paid")
+                        |list
+                        |length
+                    }}
+
+                </div>
+
+                <div class="stat-description">
+                    Successful payments
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             BOOKING HEADER
+        ===================================== -->
+
+        <div class="section-header">
+
+            <div class="section-title-area">
+
+                <h2>
+                    My Trekking Adventures
+                </h2>
+
+                <p>
+                    View your bookings and payment details.
+                </p>
+
+            </div>
+
+
+            <div class="booking-count">
+
+                {{ bookings|length }}
+                Booking{% if bookings|length != 1 %}s{% endif %}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             BOOKINGS
+        ===================================== -->
+
+        <section class="bookings-container">
+
+
+            {% if bookings %}
+
+
+                {% for booking in bookings %}
+
+
+                <article class="booking-card">
+
+
+                    <!-- BOOKING HEADER -->
+
+                    <div class="booking-header">
+
+
+                        <div class="trek-title-area">
+
+                            <div class="trek-icon">
+                                ⛰
+                            </div>
+
+
+                            <div>
+
+                                <div class="trek-title">
+
+                                    {{ booking.trek_name }}
+
+                                </div>
+
+
+                                <div class="booking-id">
+
+                                    Booking ID:
+                                    {{ booking.booking_id }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="status-badges">
+
+
+                            {% set booking_status =
+                                booking.status or "Pending"
+                            %}
+
+
+                            <span
+                                class="badge booking-status {{ booking_status|lower }}"
+                            >
+                                {{ booking_status }}
+                            </span>
+
+
+                           {% set payment_status =
+    booking.payment_status or "Pending"
+%}
+
+<span
+    class="badge payment-status {{ payment_status|lower }}"
+>
+    Payment:
+    {{ payment_status }}
+</span>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- BOOKING BODY -->
+
+                    <div class="booking-body">
+
+
+                        <div class="booking-info-grid">
+
+
+                            <div class="info-box">
+
+                                <div class="info-label">
+                                    Trek Date
+                                </div>
+
+                                <div class="info-value">
+
+                                    {{ booking.trek_date }}
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="info-box">
+
+                                <div class="info-label">
+                                    Travellers
+                                </div>
+
+                                <div class="info-value">
+
+                                    {{ booking.people }}
+
+                                    {% if booking.people == 1 %}
+                                        Person
+                                    {% else %}
+                                        People
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="info-box">
+
+                                <div class="info-label">
+                                    Experience
+                                </div>
+
+                                <div class="info-value">
+
+                                    {{ booking.experience or "Not specified" }}
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="info-box">
+
+                                <div class="info-label">
+                                    Price / Person
+                                </div>
+
+                                <div class="info-value">
+
+                                    ₹{{ "%.0f"|format(
+                                        booking.price_per_person|float
+                                    ) }}
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                       <!-- PAYMENT -->
+
+<div class="payment-summary">
+
+
+    <div class="payment-left">
+
+        <span class="payment-label">
+            Payment Information
+        </span>
+
+
+        <span class="payment-method">
+
+            Method:
+            {{ booking.payment_method or "Not Selected" }}
+
+        </span>
+
+
+        <span class="payment-date">
+
+            {% if booking.payment_date %}
+
+                Payment completed on
+                {{ booking.payment_date.strftime(
+                    '%d %b %Y, %I:%M %p'
+                ) }}
+
+            {% else %}
+
+                Payment date:
+                Awaiting payment
+
+            {% endif %}
+
+        </span>
+
+    </div>
+
+
+    <div class="amount-area">
+
+        <span class="amount-label">
+            Total Amount
+        </span>
+
+
+        <span class="amount">
+
+            ₹{{ "%.0f"|format(
+                booking.total_amount|float
+            ) }}
+
+        </span>
+
+    </div>
+
+
+</div>
+
+
+<!-- VIEW BOOKING BUTTON -->
+
+<div class="booking-actions">
+
+    <a
+        href="{{ url_for(
+            'my_booking_details',
+            booking_id=booking.booking_id
+        ) }}"
+        class="view-booking-btn"
+    >
+        View Booking Details →
+    </a>
+
+</div>
+
+
+</div>
+
+
+</article>
+
+
+{% endfor %}
+
+
+{% else %}
+
+                <!-- EMPTY STATE -->
+
+                <div class="empty-state">
+
+
+                    <div class="empty-icon">
+                        ⛰
+                    </div>
+
+
+                    <h3>
+                        No trekking adventures yet
+                    </h3>
+
+
+                    <p>
+                        You haven't made any bookings yet.
+                        Start exploring Karnataka's beautiful
+                        trekking destinations.
+                    </p>
+
+
+                    <a
+                        href="/"
+                        class="explore-btn"
+                    >
+                        Explore Treks
+                    </a>
+
+
+                </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             FOOTER
+        ===================================== -->
+
+        <div class="page-footer">
+
+            Trekora · Discover. Trek. Remember.
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

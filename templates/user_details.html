@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>User Details | Trekora</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='admin.css'
+        ) }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="mentor-form-page">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <div class="mentor-form-header">
+
+        <div>
+
+            <span class="section-label">
+                CUSTOMER MANAGEMENT
+            </span>
+
+            <h1>
+                User Details
+            </h1>
+
+            <p>
+                View the registered account and booking information.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('admin_dashboard') }}#users"
+            class="mentor-back-button"
+        >
+            ← Back to Users
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         USER ACCOUNT INFORMATION
+         ===================================================== -->
+
+    <div class="mentor-form-card">
+
+        <div class="mentor-form-section">
+
+            <h2>
+                Account Information
+            </h2>
+
+            <p>
+                Registered Trekora user details.
+            </p>
+
+
+            <div class="mentor-form-grid">
+
+
+                <!-- NAME -->
+
+                <div class="mentor-form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        value="{{ user.name }}"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="mentor-form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="text"
+                        value="{{ user.email }}"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- PHONE -->
+
+                <div class="mentor-form-group">
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="text"
+                        value="{{ user.phone or 'Not available' }}"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- USER ID -->
+
+                <div class="mentor-form-group">
+
+                    <label>
+                        User ID
+                    </label>
+
+                    <input
+                        type="text"
+                        value="#{{ user.id }}"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- REGISTERED DATE -->
+
+                <div class="mentor-form-group full">
+
+                    <label>
+                        Registered On
+                    </label>
+
+                    <input
+                        type="text"
+                        value="{% if user.created_at %}{{ user.created_at.strftime('%d %B %Y, %I:%M %p') }}{% else %}Not available{% endif %}"
+                        readonly
+                    >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             USER ACTIONS
+             ================================================= -->
+
+        <div class="mentor-form-actions">
+
+            <a
+                href="{{ url_for(
+                    'edit_user',
+                    user_id=user.id
+                ) }}"
+                class="mentor-form-submit"
+            >
+                Edit User
+            </a>
+
+            <a
+                href="{{ url_for(
+                    'admin_dashboard'
+                ) }}#users"
+                class="mentor-form-cancel"
+            >
+                Back to Users
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BOOKING HISTORY
+         ===================================================== -->
+
+    <div class="user-booking-history-card">
+
+
+        <!-- HEADER -->
+
+        <div class="user-booking-history-header">
+
+            <div>
+
+                <span class="section-label">
+                    BOOKING MANAGEMENT
+                </span>
+
+                <h2>
+                    Booking History
+                </h2>
+
+                <p>
+                    Treks booked by this registered user.
+                </p>
+
+            </div>
+
+
+            <div class="user-booking-count">
+
+                <span class="user-booking-count-number">
+                    {{ bookings|length }}
+                </span>
+
+                <span class="user-booking-count-label">
+                    Total Bookings
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BOOKING TABLE -->
+
+        <div class="user-booking-table-wrapper">
+
+            <table class="user-booking-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            BOOKING ID
+                        </th>
+
+                        <th>
+                            TREK
+                        </th>
+
+                        <th>
+                            TREK DATE
+                        </th>
+
+                        <th>
+                            PEOPLE
+                        </th>
+
+                        <th>
+                            AMOUNT
+                        </th>
+
+                        <th>
+                            BOOKING STATUS
+                        </th>
+
+                        <th>
+                            PAYMENT
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                {% if bookings %}
+
+
+                    {% for booking in bookings %}
+
+
+                    <tr>
+
+
+                        <!-- BOOKING ID -->
+
+                        <td>
+
+                            <span class="user-booking-id">
+
+                                #{{ booking.booking_id }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- TREK -->
+
+                        <td>
+
+                            <div class="user-trek-cell">
+
+                                <strong>
+                                    {{ booking.trek_name }}
+                                </strong>
+
+                                <span>
+                                    {{ booking.experience or 'Experience not specified' }}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- TREK DATE -->
+
+                        <td>
+
+                            <span class="user-booking-date">
+
+                                {% if booking.trek_date %}
+
+                                    {{ booking.trek_date.strftime('%d %b %Y') }}
+
+                                {% else %}
+
+                                    Not available
+
+                                {% endif %}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- PEOPLE -->
+
+                        <td>
+
+                            <span class="user-people-badge">
+
+                                {{ booking.people }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- AMOUNT -->
+
+                        <td>
+
+                            <strong class="user-booking-amount">
+
+                                ₹{{ "%.2f"|format(
+                                    booking.total_amount or 0
+                                ) }}
+
+                            </strong>
+
+                        </td>
+
+
+
+                        <!-- BOOKING STATUS -->
+
+                        <td>
+
+                            {% set booking_status =
+                                booking.status or "Pending"
+                            %}
+
+
+                            {% if booking_status|lower == "confirmed" %}
+
+                                <span class="user-status-badge confirmed">
+                                    Confirmed
+                                </span>
+
+                            {% elif booking_status|lower == "cancelled" %}
+
+                                <span class="user-status-badge cancelled">
+                                    Cancelled
+                                </span>
+
+                            {% else %}
+
+                                <span class="user-status-badge pending">
+                                    Pending
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- PAYMENT -->
+
+                        <td>
+
+                            {% set payment_status =
+                                booking.payment_status or "Pending"
+                            %}
+
+
+                            {% if payment_status|lower == "paid" %}
+
+                                <span class="user-payment-badge paid">
+                                    Paid
+                                </span>
+
+                            {% elif payment_status|lower == "refunded" %}
+
+                                <span class="user-payment-badge refunded">
+                                    Refunded
+                                </span>
+
+                            {% else %}
+
+                                <span class="user-payment-badge pending">
+                                    Pending
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                {% else %}
+
+
+                    <!-- EMPTY STATE -->
+
+                    <tr>
+
+                        <td colspan="7">
+
+                            <div class="user-booking-empty">
+
+                                <div class="user-booking-empty-icon">
+                                    —
+                                </div>
+
+                                <h3>
+                                    No bookings yet
+                                </h3>
+
+                                <p>
+                                    This user has not made any bookings.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+                {% endif %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
